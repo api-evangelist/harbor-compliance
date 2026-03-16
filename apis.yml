@@ -1,33 +1,46 @@
 aid: harbor-compliance
 name: Harbor Compliance
 description: >-
-  Want to strengthen your offering? Use the Harbor Compliance platform to
-  streamline compliance workflows, save staff hours, and enhance your client
-  relationships. 
+  Harbor Compliance is a compliance management platform that helps businesses
+  streamline compliance workflows, save staff hours, and enhance client
+  relationships. The platform provides tools for managing business licensing,
+  registered agent services, and compliance tracking.
 type: Index
-position: Consumer
-access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
-created: '2025-02-17'
-modified: '2025-02-17'
+  - Compliance
+  - Business Licensing
+  - Regulatory
+  - Legal
 url: >-
   https://raw.githubusercontent.com/api-evangelist/harbor-compliance/refs/heads/main/apis.yml
+created: '2025-02-17'
+modified: '2026-03-16'
 specificationVersion: '0.19'
 apis:
-  - aid: harbor-compliance:harbor-compliance
-    name: Harbor Compliance
+  - aid: harbor-compliance:harbor-compliance-api
+    name: Harbor Compliance API
     description: >-
-      Want to strengthen your offering? Use the Harbor Compliance platform to
-      streamline compliance workflows, save staff hours, and enhance your client
-      relationships. 
-    humanURL: ' https://developers.harborcompliance.com/'
+      The Harbor Compliance API enables partners to integrate compliance
+      management capabilities into their platforms, streamlining workflows
+      for business licensing, registered agent services, and compliance
+      tracking.
+    humanURL: https://developers.harborcompliance.com/
     tags:
-      - API
+      - Compliance
+      - Business Licensing
     properties:
       - type: Documentation
-        url: ' https://developers.harborcompliance.com/'
+        url: https://developers.harborcompliance.com/
+      - type: Getting Started
+        url: https://developers.harborcompliance.com/docs/getting-started
+common:
+  - type: Portal
+    url: https://developers.harborcompliance.com/
+  - type: Website
+    url: https://www.harborcompliance.com/
+  - type: Support
+    url: https://www.harborcompliance.com/contact
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
