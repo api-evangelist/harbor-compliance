@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.harborcompliance.com/schemas/entity.json",
+  "title": "Harbor Compliance Business Entity",
+  "description": "A business entity tracked within the Harbor Compliance platform, including formation details, compliance status, registered agent, licenses, and filing obligations.",
+  "type": "object",
+  "required": ["id", "name", "entity_type", "state_of_formation"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique entity identifier assigned by Harbor Compliance"
+    },
+    "name": {
+      "type": "string",
+      "description": "Legal name of the business entity"
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": ["corporation", "llc", "partnership", "nonprofit", "sole_proprietorship"],
+      "description": "Legal structure of the business entity"
+    },
+    "state_of_formation": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "Two-letter US state code where the entity was formed"
+    },
+    "ein": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{7}$",
+      "description": "Employer Identification Number in XX-XXXXXXX format"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "dissolved", "suspended"],
+      "description": "Current compliance and operational status of the entity"
+    },
+    "registered_agent": {
+      "$ref": "#/$defs/RegisteredAgent"
+    },
+    "licenses": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/License" },
+      "description": "Business licenses associated with this entity"
+    },
+    "filings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Filing" },
+      "description": "State filing obligations for this entity"
+    },
+    "foreign_qualifications": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]{2}$"
+      },
+      "description": "States where the entity is foreign-qualified to do business"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the entity record was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the most recent update"
+    }
+  },
+  "$defs": {
+    "RegisteredAgent": {
+      "type": "object",
+      "required": ["id", "jurisdiction"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Registered agent service identifier"
+        },
+        "agent_name": {
+          "type": "string",
+          "description": "Name of the registered agent"
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "State where the registered agent is serving"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "inactive"],
+          "description": "Registered agent service status"
+        },
+        "service_start": {
+          "type": "string",
+          "format": "date",
+          "description": "Date when the registered agent service began"
+        }
+      }
+    },
+    "License": {
+      "type": "object",
+      "required": ["id", "license_type", "jurisdiction", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique license identifier"
+        },
+        "license_type": {
+          "type": "string",
+          "description": "Type or category of business license"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "State or locality where the license is issued"
+        },
+        "license_number": {
+          "type": "string",
+          "description": "Official license number from the issuing authority"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "expired", "pending", "cancelled"],
+          "description": "Current license status"
+        },
+        "issued_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date the license was issued"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date",
+          "description": "License expiration date"
+        },
+        "renewal_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Recommended renewal date before expiration"
+        },
+        "fee": {
+          "type": "number",
+          "minimum": 0,
+          "description": "License fee amount in USD"
+        }
+      }
+    },
+    "Filing": {
+      "type": "object",
+      "required": ["id", "filing_type", "jurisdiction", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique filing identifier"
+        },
+        "filing_type": {
+          "type": "string",
+          "description": "Type of required filing (e.g., annual_report)"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "State requiring the filing"
+        },
+        "due_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Filing deadline"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "filed", "overdue", "waived"],
+          "description": "Current filing status"
+        },
+        "filed_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date the filing was submitted"
+        },
+        "fee": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Filing fee in USD"
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "required": ["street1", "city", "state", "zip"],
+      "properties": {
+        "street1": {
+          "type": "string",
+          "description": "Primary street address line"
+        },
+        "street2": {
+          "type": "string",
+          "description": "Secondary address line (suite, unit, floor)"
+        },
+        "city": {
+          "type": "string",
+          "description": "City name"
+        },
+        "state": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "Two-letter US state code"
+        },
+        "zip": {
+          "type": "string",
+          "pattern": "^\\d{5}(-\\d{4})?$",
+          "description": "ZIP or ZIP+4 postal code"
+        },
+        "country": {
+          "type": "string",
+          "default": "US",
+          "description": "ISO 3166-1 alpha-2 country code"
+        }
+      }
+    }
+  }
+}

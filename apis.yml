@@ -15,7 +15,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/harbor-compliance/refs/heads/main/apis.yml
 created: '2025-02-17'
-modified: '2026-03-16'
+modified: '2026-03-18'
 specificationVersion: '0.19'
 apis:
   - aid: harbor-compliance:harbor-compliance-api
@@ -34,13 +34,37 @@ apis:
         url: https://developers.harborcompliance.com/
       - type: Getting Started
         url: https://developers.harborcompliance.com/docs/getting-started
+      - type: OpenAPI
+        url: openapi/harbor-compliance-api-openapi.yml
+      - type: OpenAPI
+        url: openapi/harbor-compliance-openapi.yml
+      - type: JSONSchema
+        url: json-schema/harbor-compliance-entity-schema.json
 common:
   - type: Portal
     url: https://developers.harborcompliance.com/
   - type: Website
     url: https://www.harborcompliance.com/
+  - type: Documentation
+    url: https://developers.harborcompliance.com/
+  - type: Getting Started
+    url: https://help.harborcompliance.com/getting-started
+  - type: Blog
+    url: https://www.harborcompliance.com/blog/
   - type: Support
     url: https://www.harborcompliance.com/contact
+  - type: Login
+    url: https://www.harborcompliance.com/login
+  - type: Terms of Service
+    url: https://www.harborcompliance.com/terms-of-service
+  - type: Privacy Policy
+    url: https://www.harborcompliance.com/privacy-policy
+  - type: Security
+    url: https://www.harborcompliance.com/security
+  - type: JSON-LD
+    url: json-ld/harbor-compliance-context.jsonld
+  - type: JSONSchema
+    url: json-schema/harbor-compliance-entity-schema.json
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

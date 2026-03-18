@@ -1,0 +1,132 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "hc": "https://api.harborcompliance.com/vocab/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "legal": "http://www.w3.org/ns/legal#",
+
+    "Entity": {
+      "@id": "hc:Entity",
+      "@context": {
+        "id": "@id",
+        "name": "schema:legalName",
+        "entity_type": "hc:entityType",
+        "state_of_formation": "hc:stateOfFormation",
+        "ein": "hc:ein",
+        "status": "hc:complianceStatus",
+        "registered_agent": {
+          "@id": "hc:hasRegisteredAgent",
+          "@type": "@id"
+        },
+        "licenses": {
+          "@id": "hc:hasLicense",
+          "@container": "@set"
+        },
+        "filings": {
+          "@id": "hc:hasFiling",
+          "@container": "@set"
+        },
+        "foreign_qualifications": {
+          "@id": "hc:foreignQualification",
+          "@container": "@set"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "License": {
+      "@id": "hc:License",
+      "@context": {
+        "id": "@id",
+        "license_type": "hc:licenseType",
+        "jurisdiction": "hc:jurisdiction",
+        "license_number": "hc:licenseNumber",
+        "status": "hc:licenseStatus",
+        "issued_date": {
+          "@id": "dcterms:issued",
+          "@type": "xsd:date"
+        },
+        "expiration_date": {
+          "@id": "hc:expirationDate",
+          "@type": "xsd:date"
+        },
+        "renewal_date": {
+          "@id": "hc:renewalDate",
+          "@type": "xsd:date"
+        },
+        "fee": {
+          "@id": "schema:price",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "RegisteredAgent": {
+      "@id": "hc:RegisteredAgent",
+      "@context": {
+        "id": "@id",
+        "agent_name": "schema:name",
+        "address": "schema:address",
+        "jurisdiction": "hc:jurisdiction",
+        "status": "hc:serviceStatus",
+        "service_start": {
+          "@id": "hc:serviceStart",
+          "@type": "xsd:date"
+        }
+      }
+    },
+
+    "Filing": {
+      "@id": "hc:Filing",
+      "@context": {
+        "id": "@id",
+        "filing_type": "hc:filingType",
+        "jurisdiction": "hc:jurisdiction",
+        "due_date": {
+          "@id": "hc:dueDate",
+          "@type": "xsd:date"
+        },
+        "status": "hc:filingStatus",
+        "filed_date": {
+          "@id": "hc:filedDate",
+          "@type": "xsd:date"
+        },
+        "fee": {
+          "@id": "schema:price",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "ServiceOrder": {
+      "@id": "hc:ServiceOrder",
+      "@context": {
+        "id": "@id",
+        "service_type": "hc:serviceType",
+        "jurisdiction": "hc:jurisdiction",
+        "status": "hc:orderStatus",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "completed_at": {
+          "@id": "hc:completedAt",
+          "@type": "xsd:dateTime"
+        },
+        "estimated_completion": {
+          "@id": "hc:estimatedCompletion",
+          "@type": "xsd:date"
+        }
+      }
+    }
+  }
+}

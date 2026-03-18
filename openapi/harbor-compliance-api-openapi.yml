@@ -1,0 +1,1048 @@
+openapi: 3.1.0
+info:
+  title: Harbor Compliance API
+  description: >-
+    The Harbor Compliance API enables partners to integrate compliance management
+    capabilities into their platforms. The API provides resource-oriented URLs with
+    predictable structure, JSON-encoded responses, and standard HTTP verbs. Key
+    capabilities include entity manager data access, document delivery automation,
+    and service ordering for business licensing and registered agent services.
+    Authentication is via API key with a test environment available.
+  version: 'v1'
+  contact:
+    name: Harbor Compliance Support
+    url: https://www.harborcompliance.com/contact
+  termsOfService: https://www.harborcompliance.com/terms-of-service
+externalDocs:
+  description: Harbor Compliance Developer Documentation
+  url: https://developers.harborcompliance.com/
+servers:
+  - url: https://api.harborcompliance.com/v1
+    description: Production Server
+  - url: https://api-test.harborcompliance.com/v1
+    description: Test Environment
+tags:
+  - name: Entities
+    description: Business entity management and data access
+  - name: Licenses
+    description: Business license tracking and management
+  - name: Registered Agents
+    description: Registered agent service management
+  - name: Documents
+    description: Compliance document retrieval and delivery
+  - name: Services
+    description: Compliance service ordering and status
+  - name: Filings
+    description: State filing management and tracking
+  - name: Jurisdictions
+    description: Jurisdiction and state requirement lookups
+security:
+  - apiKey: []
+paths:
+  /entities:
+    get:
+      operationId: listEntities
+      summary: List business entities
+      description: >-
+        Returns a paginated list of business entities managed through the Harbor
+        Compliance platform, including corporations, LLCs, and other entity types.
+      tags:
+        - Entities
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PerPageParam'
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+            pattern: '^[A-Z]{2}$'
+          description: Filter entities by state of formation (two-letter abbreviation)
+        - name: entity_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [corporation, llc, partnership, nonprofit, sole_proprietorship]
+          description: Filter by entity type
+      responses:
+        '200':
+          description: Paginated list of entities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createEntity
+      summary: Create a business entity
+      description: >-
+        Creates a new business entity record in the Harbor Compliance platform for
+        tracking compliance obligations, licenses, and filings.
+      tags:
+        - Entities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityCreate'
+      responses:
+        '201':
+          description: Entity created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /entities/{entityId}:
+    get:
+      operationId: getEntity
+      summary: Get a business entity
+      description: >-
+        Returns detailed information about a specific business entity including
+        formation details, registered agent, and compliance status.
+      tags:
+        - Entities
+      parameters:
+        - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: Entity details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateEntity
+      summary: Update a business entity
+      description: >-
+        Updates the details of an existing business entity record.
+      tags:
+        - Entities
+      parameters:
+        - $ref: '#/components/parameters/EntityId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityUpdate'
+      responses:
+        '200':
+          description: Entity updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /entities/{entityId}/licenses:
+    get:
+      operationId: listEntityLicenses
+      summary: List licenses for an entity
+      description: >-
+        Returns all business licenses associated with a specific entity, including
+        status, expiration dates, and jurisdiction details.
+      tags:
+        - Licenses
+      parameters:
+        - $ref: '#/components/parameters/EntityId'
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [active, expired, pending, cancelled]
+          description: Filter licenses by status
+      responses:
+        '200':
+          description: License list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /licenses:
+    get:
+      operationId: listLicenses
+      summary: List all licenses
+      description: >-
+        Returns a paginated list of all business licenses across all managed entities,
+        with filtering by status, state, and license type.
+      tags:
+        - Licenses
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PerPageParam'
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [active, expired, pending, cancelled]
+          description: Filter by license status
+        - name: expiring_before
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter for licenses expiring before this date (ISO 8601)
+      responses:
+        '200':
+          description: Paginated license list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /licenses/{licenseId}:
+    get:
+      operationId: getLicense
+      summary: Get a license
+      description: >-
+        Returns detailed information about a specific business license including
+        jurisdiction requirements, renewal dates, and associated documents.
+      tags:
+        - Licenses
+      parameters:
+        - $ref: '#/components/parameters/LicenseId'
+      responses:
+        '200':
+          description: License details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/License'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /registered-agents:
+    get:
+      operationId: listRegisteredAgents
+      summary: List registered agent services
+      description: >-
+        Returns all registered agent service assignments across managed entities
+        and jurisdictions.
+      tags:
+        - Registered Agents
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PerPageParam'
+      responses:
+        '200':
+          description: Registered agent list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisteredAgentList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /registered-agents/{agentId}:
+    get:
+      operationId: getRegisteredAgent
+      summary: Get registered agent details
+      description: >-
+        Returns details for a specific registered agent service including address,
+        jurisdiction, and associated entity.
+      tags:
+        - Registered Agents
+      parameters:
+        - $ref: '#/components/parameters/AgentId'
+      responses:
+        '200':
+          description: Registered agent details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisteredAgent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /documents:
+    get:
+      operationId: listDocuments
+      summary: List compliance documents
+      description: >-
+        Returns a paginated list of compliance documents available for download,
+        including annual reports, formation documents, and regulatory filings.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PerPageParam'
+        - name: entity_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter documents by entity ID
+        - name: document_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [annual_report, formation, amendment, certificate, filing]
+          description: Filter by document type
+      responses:
+        '200':
+          description: Document list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /documents/{documentId}/download:
+    get:
+      operationId: downloadDocument
+      summary: Download a compliance document
+      description: >-
+        Returns a signed download URL or binary content for the specified
+        compliance document.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '200':
+          description: Document download URL or content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDownload'
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /services:
+    get:
+      operationId: listServices
+      summary: List available compliance services
+      description: >-
+        Returns a list of compliance services available to order, including
+        business licensing, registered agent, and filing services.
+      tags:
+        - Services
+      parameters:
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+            pattern: '^[A-Z]{2}$'
+          description: Filter services available in a specific state
+      responses:
+        '200':
+          description: Available services
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: orderService
+      summary: Order a compliance service
+      description: >-
+        Places an order for a compliance service such as a business license
+        application, registered agent assignment, or state filing.
+      tags:
+        - Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceOrderRequest'
+      responses:
+        '201':
+          description: Service order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceOrder'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /services/{orderId}:
+    get:
+      operationId: getServiceOrder
+      summary: Get service order status
+      description: >-
+        Returns the current status and details of a compliance service order.
+      tags:
+        - Services
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: Service order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceOrder'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /filings:
+    get:
+      operationId: listFilings
+      summary: List state filings
+      description: >-
+        Returns a paginated list of state filings across all managed entities,
+        including annual reports and other mandatory compliance filings.
+      tags:
+        - Filings
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PerPageParam'
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [pending, filed, overdue, waived]
+          description: Filter filings by status
+        - name: due_before
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter for filings due before this date
+      responses:
+        '200':
+          description: Filing list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilingList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /jurisdictions:
+    get:
+      operationId: listJurisdictions
+      summary: List jurisdictions
+      description: >-
+        Returns a list of US states and jurisdictions with their compliance
+        requirements and available services.
+      tags:
+        - Jurisdictions
+      responses:
+        '200':
+          description: Jurisdiction list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JurisdictionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /jurisdictions/{state}/requirements:
+    get:
+      operationId: getJurisdictionRequirements
+      summary: Get compliance requirements for a jurisdiction
+      description: >-
+        Returns the compliance requirements, filing deadlines, and license
+        obligations for a specific state jurisdiction and entity type.
+      tags:
+        - Jurisdictions
+      parameters:
+        - $ref: '#/components/parameters/StateCode'
+        - name: entity_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [corporation, llc, partnership, nonprofit]
+          description: Filter requirements by entity type
+      responses:
+        '200':
+          description: Jurisdiction requirements
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JurisdictionRequirements'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating requests to the Harbor Compliance API
+  parameters:
+    EntityId:
+      name: entityId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the business entity
+    LicenseId:
+      name: licenseId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the license
+    AgentId:
+      name: agentId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the registered agent service
+    DocumentId:
+      name: documentId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the compliance document
+    OrderId:
+      name: orderId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the service order
+    StateCode:
+      name: state
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[A-Z]{2}$'
+      description: Two-letter US state abbreviation
+    PageParam:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: Page number for paginated results
+    PerPageParam:
+      name: per_page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+      description: Number of results per page
+  responses:
+    BadRequest:
+      description: Bad request — invalid or missing parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized — missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Entity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique entity identifier
+        name:
+          type: string
+          description: Legal name of the business entity
+        entity_type:
+          type: string
+          enum: [corporation, llc, partnership, nonprofit, sole_proprietorship]
+          description: Type of business entity
+        state_of_formation:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          description: Two-letter state code where entity was formed
+        ein:
+          type: string
+          pattern: '^\d{2}-\d{7}$'
+          description: Employer Identification Number
+        status:
+          type: string
+          enum: [active, inactive, dissolved, suspended]
+          description: Current compliance status
+        registered_agent:
+          $ref: '#/components/schemas/RegisteredAgent'
+        created_at:
+          type: string
+          format: date-time
+          description: Record creation timestamp
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    EntityCreate:
+      type: object
+      required:
+        - name
+        - entity_type
+        - state_of_formation
+      properties:
+        name:
+          type: string
+          description: Legal name of the business entity
+        entity_type:
+          type: string
+          enum: [corporation, llc, partnership, nonprofit, sole_proprietorship]
+          description: Type of business entity
+        state_of_formation:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          description: Two-letter state code of formation
+        ein:
+          type: string
+          pattern: '^\d{2}-\d{7}$'
+          description: Employer Identification Number
+    EntityUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated legal name
+        ein:
+          type: string
+          pattern: '^\d{2}-\d{7}$'
+          description: Updated Employer Identification Number
+        status:
+          type: string
+          enum: [active, inactive, dissolved, suspended]
+          description: Updated entity status
+    EntityList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+          description: List of entities
+        total:
+          type: integer
+          description: Total number of entities
+        page:
+          type: integer
+          description: Current page number
+        per_page:
+          type: integer
+          description: Results per page
+    License:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique license identifier
+        entity_id:
+          type: string
+          description: Associated entity identifier
+        license_type:
+          type: string
+          description: Type of business license
+        jurisdiction:
+          type: string
+          description: State or locality where the license is issued
+        license_number:
+          type: string
+          description: Official license number from issuing authority
+        status:
+          type: string
+          enum: [active, expired, pending, cancelled]
+          description: Current license status
+        issued_date:
+          type: string
+          format: date
+          description: Date the license was issued
+        expiration_date:
+          type: string
+          format: date
+          description: License expiration date
+        renewal_date:
+          type: string
+          format: date
+          description: Recommended renewal date
+        fee:
+          type: number
+          description: License fee amount in USD
+    LicenseList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/License'
+          description: List of licenses
+        total:
+          type: integer
+          description: Total number of licenses
+        page:
+          type: integer
+          description: Current page
+        per_page:
+          type: integer
+          description: Results per page
+    RegisteredAgent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique registered agent service identifier
+        entity_id:
+          type: string
+          description: Associated entity identifier
+        agent_name:
+          type: string
+          description: Name of the registered agent
+        address:
+          $ref: '#/components/schemas/Address'
+        jurisdiction:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          description: State where the registered agent is serving
+        status:
+          type: string
+          enum: [active, inactive]
+          description: Registered agent service status
+        service_start:
+          type: string
+          format: date
+          description: Date when registered agent service began
+    RegisteredAgentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RegisteredAgent'
+          description: List of registered agent services
+        total:
+          type: integer
+          description: Total count
+        page:
+          type: integer
+          description: Current page
+        per_page:
+          type: integer
+          description: Results per page
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique document identifier
+        entity_id:
+          type: string
+          description: Associated entity identifier
+        document_type:
+          type: string
+          enum: [annual_report, formation, amendment, certificate, filing]
+          description: Type of compliance document
+        name:
+          type: string
+          description: Document display name
+        jurisdiction:
+          type: string
+          description: Jurisdiction associated with the document
+        filed_date:
+          type: string
+          format: date
+          description: Date the document was filed or issued
+        file_size:
+          type: integer
+          description: File size in bytes
+        mime_type:
+          type: string
+          description: MIME type of the document (typically application/pdf)
+    DocumentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+          description: List of documents
+        total:
+          type: integer
+          description: Total count
+        page:
+          type: integer
+          description: Current page
+        per_page:
+          type: integer
+          description: Results per page
+    DocumentDownload:
+      type: object
+      properties:
+        download_url:
+          type: string
+          format: uri
+          description: Signed URL for downloading the document
+        expires_at:
+          type: string
+          format: date-time
+          description: When the download URL expires
+    ServiceOrderRequest:
+      type: object
+      required:
+        - service_type
+        - entity_id
+        - jurisdiction
+      properties:
+        service_type:
+          type: string
+          enum: [business_license, registered_agent, annual_report_filing, formation, amendment]
+          description: Type of compliance service to order
+        entity_id:
+          type: string
+          description: Entity to associate the service with
+        jurisdiction:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          description: State jurisdiction for the service
+        notes:
+          type: string
+          description: Additional notes or instructions for the service
+    ServiceOrder:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique order identifier
+        service_type:
+          type: string
+          description: Type of service ordered
+        entity_id:
+          type: string
+          description: Associated entity identifier
+        jurisdiction:
+          type: string
+          description: State jurisdiction
+        status:
+          type: string
+          enum: [pending, in_progress, completed, cancelled, failed]
+          description: Current order status
+        created_at:
+          type: string
+          format: date-time
+          description: Order creation timestamp
+        completed_at:
+          type: string
+          format: date-time
+          description: Order completion timestamp
+        estimated_completion:
+          type: string
+          format: date
+          description: Estimated completion date
+    ServiceList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              service_type:
+                type: string
+                description: Service type identifier
+              name:
+                type: string
+                description: Service display name
+              description:
+                type: string
+                description: Service description
+              jurisdictions:
+                type: array
+                items:
+                  type: string
+                description: States where service is available
+              fee:
+                type: number
+                description: Base fee for the service in USD
+          description: List of available services
+    Filing:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique filing identifier
+        entity_id:
+          type: string
+          description: Associated entity identifier
+        filing_type:
+          type: string
+          description: Type of required filing
+        jurisdiction:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          description: State requiring the filing
+        due_date:
+          type: string
+          format: date
+          description: Filing deadline
+        status:
+          type: string
+          enum: [pending, filed, overdue, waived]
+          description: Filing status
+        filed_date:
+          type: string
+          format: date
+          description: Date the filing was submitted
+        fee:
+          type: number
+          description: Filing fee in USD
+    FilingList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filing'
+          description: List of filings
+        total:
+          type: integer
+          description: Total count
+        page:
+          type: integer
+          description: Current page
+        per_page:
+          type: integer
+          description: Results per page
+    JurisdictionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Jurisdiction'
+          description: List of jurisdictions
+    Jurisdiction:
+      type: object
+      properties:
+        code:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          description: Two-letter state code
+        name:
+          type: string
+          description: Full jurisdiction name
+        has_registered_agent:
+          type: boolean
+          description: Whether registered agent service is available
+        has_licensing:
+          type: boolean
+          description: Whether business licensing service is available
+    JurisdictionRequirements:
+      type: object
+      properties:
+        jurisdiction:
+          type: string
+          description: State code
+        entity_type:
+          type: string
+          description: Entity type these requirements apply to
+        annual_report:
+          type: object
+          properties:
+            required:
+              type: boolean
+              description: Whether annual report is required
+            due_date_rule:
+              type: string
+              description: Rule for determining due date (e.g., anniversary of formation)
+            fee:
+              type: number
+              description: Annual report filing fee in USD
+        registered_agent:
+          type: object
+          properties:
+            required:
+              type: boolean
+              description: Whether registered agent is required
+        licenses:
+          type: array
+          items:
+            type: object
+            properties:
+              license_type:
+                type: string
+                description: Type of required license
+              description:
+                type: string
+                description: License requirement description
+          description: Required business licenses for this jurisdiction
+    Address:
+      type: object
+      properties:
+        street1:
+          type: string
+          description: Primary street address
+        street2:
+          type: string
+          description: Secondary address line (suite, unit, etc.)
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          description: Two-letter state code
+        zip:
+          type: string
+          pattern: '^\d{5}(-\d{4})?$'
+          description: ZIP code
+        country:
+          type: string
+          default: US
+          description: Country code
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
