@@ -38,7 +38,7 @@ paths:
   /entities:
     get:
       operationId: listEntities
-      summary: List business entities
+      summary: Harbor Compliance List business entities
       description: >-
         Returns a paginated list of business entities managed under the partner
         account. Results can be filtered by entity type, state, and status.
@@ -89,7 +89,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createEntity
-      summary: Create a business entity
+      summary: Harbor Compliance Create a business entity
       description: >-
         Creates a new business entity record in Harbor Compliance. This
         registers the entity for compliance tracking and monitoring across
@@ -116,7 +116,7 @@ paths:
   /entities/{entityId}:
     get:
       operationId: getEntity
-      summary: Get a business entity
+      summary: Harbor Compliance Get a business entity
       description: >-
         Retrieves detailed information about a specific business entity including
         its formation details, registered agent, compliance status, and active
@@ -138,7 +138,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateEntity
-      summary: Update a business entity
+      summary: Harbor Compliance Update a business entity
       description: >-
         Updates mutable fields on a business entity record such as the contact
         information, principal address, and officer details.
@@ -168,7 +168,7 @@ paths:
   /entities/{entityId}/compliance:
     get:
       operationId: getEntityCompliance
-      summary: Get compliance status for an entity
+      summary: Harbor Compliance Get compliance status for an entity
       description: >-
         Returns the full compliance status for a business entity including
         upcoming filing deadlines, overdue items, and a summary of active
@@ -193,7 +193,7 @@ paths:
   /licenses:
     get:
       operationId: listLicenses
-      summary: List business licenses
+      summary: Harbor Compliance List business licenses
       description: >-
         Returns a paginated list of business licenses managed for partner
         entities. Licenses can be filtered by entity, jurisdiction, license
@@ -238,7 +238,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createLicense
-      summary: Create a license application
+      summary: Harbor Compliance Create a license application
       description: >-
         Submits a new business license application for a specified entity and
         jurisdiction. Harbor Compliance will process the application and update
@@ -265,7 +265,7 @@ paths:
   /licenses/{licenseId}:
     get:
       operationId: getLicense
-      summary: Get a business license
+      summary: Harbor Compliance Get a business license
       description: >-
         Retrieves detailed information about a specific business license
         including its current status, expiration date, renewal requirements,
@@ -288,7 +288,7 @@ paths:
   /licenses/{licenseId}/renew:
     post:
       operationId: renewLicense
-      summary: Renew a business license
+      summary: Harbor Compliance Renew a business license
       description: >-
         Initiates the renewal process for an existing business license. This
         creates a renewal order that Harbor Compliance will process through the
@@ -323,7 +323,7 @@ paths:
   /registered-agents:
     get:
       operationId: listRegisteredAgents
-      summary: List registered agent appointments
+      summary: Harbor Compliance List registered agent appointments
       description: >-
         Returns a paginated list of registered agent appointments for entities
         managed under the partner account. Includes appointment status and
@@ -362,7 +362,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createRegisteredAgentAppointment
-      summary: Appoint a registered agent
+      summary: Harbor Compliance Appoint a registered agent
       description: >-
         Creates a new registered agent appointment for a business entity in a
         specified state. Harbor Compliance will file the necessary paperwork
@@ -389,7 +389,7 @@ paths:
   /registered-agents/{agentId}:
     get:
       operationId: getRegisteredAgent
-      summary: Get a registered agent appointment
+      summary: Harbor Compliance Get a registered agent appointment
       description: >-
         Retrieves details about a specific registered agent appointment including
         the agent's address, appointment status, and associated entity.
@@ -411,7 +411,7 @@ paths:
   /filings:
     get:
       operationId: listFilings
-      summary: List compliance filings
+      summary: Harbor Compliance List compliance filings
       description: >-
         Returns a paginated list of compliance filings including annual reports,
         statements of information, and other required regulatory submissions.
@@ -463,7 +463,7 @@ paths:
   /filings/{filingId}:
     get:
       operationId: getFiling
-      summary: Get a compliance filing
+      summary: Harbor Compliance Get a compliance filing
       description: >-
         Retrieves details about a specific compliance filing including its type,
         due date, status, and any documents associated with the filing.
@@ -485,7 +485,7 @@ paths:
   /jurisdictions:
     get:
       operationId: listJurisdictions
-      summary: List jurisdictions
+      summary: Harbor Compliance List jurisdictions
       description: >-
         Returns a list of all supported jurisdictions with their compliance
         requirements, filing fees, and annual report due dates.
@@ -520,7 +520,7 @@ paths:
   /jurisdictions/{state}:
     get:
       operationId: getJurisdiction
-      summary: Get jurisdiction details
+      summary: Harbor Compliance Get jurisdiction details
       description: >-
         Retrieves detailed compliance requirements for a specific state
         jurisdiction including annual report deadlines, filing fees, and
@@ -549,7 +549,7 @@ paths:
   /orders:
     get:
       operationId: listOrders
-      summary: List service orders
+      summary: Harbor Compliance List service orders
       description: >-
         Returns a paginated list of compliance service orders placed through the
         Harbor Compliance partner account. Orders represent discrete compliance
@@ -589,7 +589,7 @@ paths:
   /orders/{orderId}:
     get:
       operationId: getOrder
-      summary: Get a service order
+      summary: Harbor Compliance Get a service order
       description: >-
         Retrieves details about a specific compliance service order including
         its current status, associated entity, service type, and any documents

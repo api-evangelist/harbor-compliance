@@ -42,7 +42,7 @@ paths:
   /entities:
     get:
       operationId: listEntities
-      summary: List business entities
+      summary: Harbor Compliance List business entities
       description: >-
         Returns a paginated list of business entities managed through the Harbor
         Compliance platform, including corporations, LLCs, and other entity types.
@@ -76,7 +76,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createEntity
-      summary: Create a business entity
+      summary: Harbor Compliance Create a business entity
       description: >-
         Creates a new business entity record in the Harbor Compliance platform for
         tracking compliance obligations, licenses, and filings.
@@ -102,7 +102,7 @@ paths:
   /entities/{entityId}:
     get:
       operationId: getEntity
-      summary: Get a business entity
+      summary: Harbor Compliance Get a business entity
       description: >-
         Returns detailed information about a specific business entity including
         formation details, registered agent, and compliance status.
@@ -123,7 +123,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateEntity
-      summary: Update a business entity
+      summary: Harbor Compliance Update a business entity
       description: >-
         Updates the details of an existing business entity record.
       tags:
@@ -152,7 +152,7 @@ paths:
   /entities/{entityId}/licenses:
     get:
       operationId: listEntityLicenses
-      summary: List licenses for an entity
+      summary: Harbor Compliance List licenses for an entity
       description: >-
         Returns all business licenses associated with a specific entity, including
         status, expiration dates, and jurisdiction details.
@@ -181,7 +181,7 @@ paths:
   /licenses:
     get:
       operationId: listLicenses
-      summary: List all licenses
+      summary: Harbor Compliance List all licenses
       description: >-
         Returns a paginated list of all business licenses across all managed entities,
         with filtering by status, state, and license type.
@@ -216,7 +216,7 @@ paths:
   /licenses/{licenseId}:
     get:
       operationId: getLicense
-      summary: Get a license
+      summary: Harbor Compliance Get a license
       description: >-
         Returns detailed information about a specific business license including
         jurisdiction requirements, renewal dates, and associated documents.
@@ -238,7 +238,7 @@ paths:
   /registered-agents:
     get:
       operationId: listRegisteredAgents
-      summary: List registered agent services
+      summary: Harbor Compliance List registered agent services
       description: >-
         Returns all registered agent service assignments across managed entities
         and jurisdictions.
@@ -259,7 +259,7 @@ paths:
   /registered-agents/{agentId}:
     get:
       operationId: getRegisteredAgent
-      summary: Get registered agent details
+      summary: Harbor Compliance Get registered agent details
       description: >-
         Returns details for a specific registered agent service including address,
         jurisdiction, and associated entity.
@@ -281,7 +281,7 @@ paths:
   /documents:
     get:
       operationId: listDocuments
-      summary: List compliance documents
+      summary: Harbor Compliance List compliance documents
       description: >-
         Returns a paginated list of compliance documents available for download,
         including annual reports, formation documents, and regulatory filings.
@@ -315,7 +315,7 @@ paths:
   /documents/{documentId}/download:
     get:
       operationId: downloadDocument
-      summary: Download a compliance document
+      summary: Harbor Compliance Download a compliance document
       description: >-
         Returns a signed download URL or binary content for the specified
         compliance document.
@@ -341,7 +341,7 @@ paths:
   /services:
     get:
       operationId: listServices
-      summary: List available compliance services
+      summary: Harbor Compliance List available compliance services
       description: >-
         Returns a list of compliance services available to order, including
         business licensing, registered agent, and filing services.
@@ -366,7 +366,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: orderService
-      summary: Order a compliance service
+      summary: Harbor Compliance Order a compliance service
       description: >-
         Places an order for a compliance service such as a business license
         application, registered agent assignment, or state filing.
@@ -392,7 +392,7 @@ paths:
   /services/{orderId}:
     get:
       operationId: getServiceOrder
-      summary: Get service order status
+      summary: Harbor Compliance Get service order status
       description: >-
         Returns the current status and details of a compliance service order.
       tags:
@@ -413,7 +413,7 @@ paths:
   /filings:
     get:
       operationId: listFilings
-      summary: List state filings
+      summary: Harbor Compliance List state filings
       description: >-
         Returns a paginated list of state filings across all managed entities,
         including annual reports and other mandatory compliance filings.
@@ -448,7 +448,7 @@ paths:
   /jurisdictions:
     get:
       operationId: listJurisdictions
-      summary: List jurisdictions
+      summary: Harbor Compliance List jurisdictions
       description: >-
         Returns a list of US states and jurisdictions with their compliance
         requirements and available services.
@@ -466,7 +466,7 @@ paths:
   /jurisdictions/{state}/requirements:
     get:
       operationId: getJurisdictionRequirements
-      summary: Get compliance requirements for a jurisdiction
+      summary: Harbor Compliance Get compliance requirements for a jurisdiction
       description: >-
         Returns the compliance requirements, filing deadlines, and license
         obligations for a specific state jurisdiction and entity type.
