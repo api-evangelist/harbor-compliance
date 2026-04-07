@@ -20,18 +20,18 @@ servers:
   - url: https://api.harborcompliance.com/v1
     description: Production Server
 tags:
-  - name: Entities
-    description: Business entity management including corporations, LLCs, and other legal entities.
-  - name: Licenses
-    description: Business license applications, renewals, and status tracking across jurisdictions.
-  - name: Registered Agents
-    description: Registered agent appointment and management for business entities.
   - name: Compliance Filings
     description: Annual reports, compliance filings, and deadline tracking.
+  - name: Entities
+    description: Business entity management including corporations, LLCs, and other legal entities.
   - name: Jurisdictions
     description: State and jurisdiction information for compliance requirements.
+  - name: Licenses
+    description: Business license applications, renewals, and status tracking across jurisdictions.
   - name: Orders
     description: Compliance service orders and fulfillment tracking.
+  - name: Registered Agents
+    description: Registered agent appointment and management for business entities.
 security:
   - apiKey: []
 paths:
@@ -175,8 +175,8 @@ paths:
         compliance requirements across all jurisdictions where the entity
         operates.
       tags:
-        - Entities
         - Compliance Filings
+        - Entities
       parameters:
         - $ref: '#/components/parameters/entityIdParam'
       responses:

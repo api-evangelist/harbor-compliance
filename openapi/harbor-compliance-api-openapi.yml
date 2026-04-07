@@ -22,20 +22,18 @@ servers:
   - url: https://api-test.harborcompliance.com/v1
     description: Test Environment
 tags:
-  - name: Entities
-    description: Business entity management and data access
-  - name: Licenses
-    description: Business license tracking and management
-  - name: Registered Agents
-    description: Registered agent service management
   - name: Documents
     description: Compliance document retrieval and delivery
-  - name: Services
-    description: Compliance service ordering and status
+  - name: Entities
+    description: Business entity management and data access
   - name: Filings
     description: State filing management and tracking
   - name: Jurisdictions
     description: Jurisdiction and state requirement lookups
+  - name: Licenses
+    description: Business license tracking and management
+  - name: Registered Agents
+    description: Registered agent service management
 security:
   - apiKey: []
 paths:
@@ -345,8 +343,7 @@ paths:
       description: >-
         Returns a list of compliance services available to order, including
         business licensing, registered agent, and filing services.
-      tags:
-        - Services
+      tags: []
       parameters:
         - name: state
           in: query
@@ -370,8 +367,7 @@ paths:
       description: >-
         Places an order for a compliance service such as a business license
         application, registered agent assignment, or state filing.
-      tags:
-        - Services
+      tags: []
       requestBody:
         required: true
         content:
@@ -395,8 +391,7 @@ paths:
       summary: Harbor Compliance Get service order status
       description: >-
         Returns the current status and details of a compliance service order.
-      tags:
-        - Services
+      tags: []
       parameters:
         - $ref: '#/components/parameters/OrderId'
       responses:

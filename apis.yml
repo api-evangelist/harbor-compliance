@@ -8,10 +8,10 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Compliance
   - Business Licensing
-  - Regulatory
+  - Compliance
   - Legal
+  - Regulatory
 url: >-
   https://raw.githubusercontent.com/api-evangelist/harbor-compliance/refs/heads/main/apis.yml
 created: '2025-02-17'
@@ -27,8 +27,8 @@ apis:
       tracking.
     humanURL: https://developers.harborcompliance.com/
     tags:
-      - Compliance
       - Business Licensing
+      - Compliance
     properties:
       - type: Documentation
         url: https://developers.harborcompliance.com/
