@@ -16,7 +16,7 @@ Harbor Compliance is a compliance management platform that helps businesses stre
 ## Timestamps
 
 - **Created:** 2025-02-17 
-- **Modified:** 2026-03-18 
+- **Modified:** 2026-04-28 
 
 ## APIs
 
@@ -34,7 +34,6 @@ The Harbor Compliance API enables partners to integrate compliance management ca
 
 - [Documentation](https://developers.harborcompliance.com/)
 - [Getting Started](https://developers.harborcompliance.com/docs/getting-started)
-- [OpenAPI](openapi/harbor-compliance-api-openapi.yml)
 - [OpenAPI](openapi/harbor-compliance-openapi.yml)
 - [JSONSchema](json-schema/harbor-compliance-entity-schema.json)
 

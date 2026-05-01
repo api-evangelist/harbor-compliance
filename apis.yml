@@ -15,7 +15,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/harbor-compliance/refs/heads/main/apis.yml
 created: '2025-02-17'
-modified: '2026-03-18'
+modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
   - aid: harbor-compliance:harbor-compliance-api
@@ -34,8 +34,6 @@ apis:
         url: https://developers.harborcompliance.com/
       - type: Getting Started
         url: https://developers.harborcompliance.com/docs/getting-started
-      - type: OpenAPI
-        url: openapi/harbor-compliance-api-openapi.yml
       - type: OpenAPI
         url: openapi/harbor-compliance-openapi.yml
       - type: JSONSchema
