@@ -1,0 +1,13 @@
+{
+  "repo": "harbor-compliance",
+  "feeds": [
+    {
+      "source": "https://www.harborcompliance.com/blog/",
+      "feed_url": "https://www.harborcompliance.com/blog/feed/",
+      "saved": 10,
+      "title": "Harbor Compliance Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:29:14Z"
+}
