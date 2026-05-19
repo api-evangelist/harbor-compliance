@@ -1,0 +1,154 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Harbor Compliance API — Registered Agents
+  description: 'Harbor Compliance API — Registered Agents. 3 operations. Lead operation: Harbor Compliance List registered
+    agent appointments. Self-contained Naftiko capability covering one Harbor Compliance business surface.'
+  tags:
+  - Harbor Compliance
+  - Registered Agents
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    HARBOR_COMPLIANCE_API_KEY: HARBOR_COMPLIANCE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: harbor-compliance-registered-agents
+    baseUri: https://api.harborcompliance.com/v1
+    description: Harbor Compliance API — Registered Agents business capability. Self-contained, no shared references.
+    resources:
+    - name: registered-agents
+      path: /registered-agents
+      operations:
+      - name: listregisteredagents
+        method: GET
+        description: Harbor Compliance List registered agent appointments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entity_id
+          in: query
+          type: string
+          description: Filter by entity identifier.
+        - name: state
+          in: query
+          type: string
+          description: Filter by state jurisdiction.
+      - name: createregisteredagentappointment
+        method: POST
+        description: Harbor Compliance Appoint a registered agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: registered-agents-agentId
+      path: /registered-agents/{agentId}
+      operations:
+      - name: getregisteredagent
+        method: GET
+        description: Harbor Compliance Get a registered agent appointment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.HARBOR_COMPLIANCE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: harbor-compliance-registered-agents-rest
+    port: 8080
+    description: REST adapter for Harbor Compliance API — Registered Agents. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/registered-agents
+      name: registered-agents
+      description: REST surface for registered-agents.
+      operations:
+      - method: GET
+        name: listregisteredagents
+        description: Harbor Compliance List registered agent appointments
+        call: harbor-compliance-registered-agents.listregisteredagents
+        with:
+          entity_id: rest.entity_id
+          state: rest.state
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createregisteredagentappointment
+        description: Harbor Compliance Appoint a registered agent
+        call: harbor-compliance-registered-agents.createregisteredagentappointment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/registered-agents/{agentid}
+      name: registered-agents-agentid
+      description: REST surface for registered-agents-agentId.
+      operations:
+      - method: GET
+        name: getregisteredagent
+        description: Harbor Compliance Get a registered agent appointment
+        call: harbor-compliance-registered-agents.getregisteredagent
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: harbor-compliance-registered-agents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Harbor Compliance API — Registered Agents. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: harbor-compliance-list-registered-agent
+      description: Harbor Compliance List registered agent appointments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: harbor-compliance-registered-agents.listregisteredagents
+      with:
+        entity_id: tools.entity_id
+        state: tools.state
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: harbor-compliance-appoint-registered-agent
+      description: Harbor Compliance Appoint a registered agent
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: harbor-compliance-registered-agents.createregisteredagentappointment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: harbor-compliance-get-registered-agent
+      description: Harbor Compliance Get a registered agent appointment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: harbor-compliance-registered-agents.getregisteredagent
+      outputParameters:
+      - type: object
+        mapping: $.
