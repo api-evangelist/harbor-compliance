@@ -1,0 +1,4008 @@
+{
+  "item": [
+    {
+      "id": "985063a9-9ac2-4000-94a5-b85d5d77a82e",
+      "name": "Compliance Filings",
+      "description": {
+        "content": "Annual reports, compliance filings, and deadline tracking.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b866496-3f05-4835-a085-a0f64aaec39a",
+          "name": "Harbor Compliance Get compliance status for an entity",
+          "request": {
+            "name": "Harbor Compliance Get compliance status for an entity",
+            "description": {
+              "content": "Returns the full compliance status for a business entity including upcoming filing deadlines, overdue items, and a summary of active compliance requirements across all jurisdictions where the entity operates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                ":entityId",
+                "compliance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityId",
+                  "description": "(Required) Unique identifier for the business entity."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d97c359-d591-4c64-90a6-c800bd4c70eb",
+              "name": "Entity compliance status summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId",
+                    "compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entity_id\": \"string\",\n  \"overall_status\": \"compliant\",\n  \"upcoming_deadlines\": [\n    {\n      \"type\": \"biennial_report\",\n      \"state\": \"WI\",\n      \"due_date\": \"1986-05-14\",\n      \"status\": \"in_progress\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    },\n    {\n      \"type\": \"other\",\n      \"state\": \"OT\",\n      \"due_date\": \"2023-12-02\",\n      \"status\": \"in_progress\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    }\n  ],\n  \"overdue_items\": [\n    {\n      \"type\": \"registered_agent\",\n      \"state\": \"DL\",\n      \"due_date\": \"2018-06-19\",\n      \"status\": \"in_progress\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    },\n    {\n      \"type\": \"registered_agent\",\n      \"state\": \"WF\",\n      \"due_date\": \"2011-06-04\",\n      \"status\": \"overdue\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    }\n  ],\n  \"active_licenses_count\": 6239,\n  \"expiring_licenses_count\": 7504,\n  \"registered_agent_states\": [\n    \"GL\",\n    \"NA\"\n  ],\n  \"generated_at\": \"1961-06-17T02:54:46.731Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bf6eec4-7bfc-406c-884c-16c1ddf69ef5",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId",
+                    "compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3a4e40e-58b7-4698-a1ab-27a6abf22955",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId",
+                    "compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8bd94e4-c7fe-4978-9198-bd4171f3c975",
+          "name": "Harbor Compliance List compliance filings",
+          "request": {
+            "name": "Harbor Compliance List compliance filings",
+            "description": {
+              "content": "Returns a paginated list of compliance filings including annual reports, statements of information, and other required regulatory submissions. Results can be filtered by entity, state, filing type, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (1-based)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<string>",
+                  "description": "Filter filings by entity identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter filings by state jurisdiction."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by filing status."
+                },
+                {
+                  "disabled": false,
+                  "key": "due_before",
+                  "value": "<date>",
+                  "description": "Filter filings due before this date (ISO 8601 date)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef693b8a-776a-4054-bc25-d652f0a6cbde",
+              "name": "A paginated list of compliance filings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "due_before",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"MK\",\n      \"filing_type\": \"annual_report\",\n      \"status\": \"waived\",\n      \"due_date\": \"1999-12-28\",\n      \"filed_date\": \"1999-03-06\",\n      \"fee\": 1634.4125579569336,\n      \"filing_period\": \"string\",\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://OsmrnoUbU.lyd4gEaauu6Gzh,gnTh0vd.kmev8wqiumAmkHfaX-2\",\n          \"created_at\": \"1960-05-08T21:30:53.316Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://zncxMFRq.hqkmXJVJooO2-6.DBdNk0,zOK-tkjUvaMx8gNz3s\",\n          \"created_at\": \"1947-06-10T21:48:30.376Z\"\n        }\n      ],\n      \"created_at\": \"1966-09-12T22:29:22.336Z\",\n      \"updated_at\": \"1980-02-23T13:59:56.726Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"AK\",\n      \"filing_type\": \"franchise_tax\",\n      \"status\": \"filed\",\n      \"due_date\": \"1983-03-23\",\n      \"filed_date\": \"2025-10-28\",\n      \"fee\": 6291.131400161495,\n      \"filing_period\": \"string\",\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"https://JKmmeOsRgmLZKFZSgbWoMPYNuubpgC.tjzrvgSxr,e6Yj1DDzDKQJBOVa,4bhRmRJ3FU3a4NaugrMKQW3\",\n          \"created_at\": \"2006-03-18T11:25:26.575Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"https://ZFIGDqgHXxRPUlS.mcqvsBqV8MTTGJz8vBkQgwlq7dZOqTJVismW.o\",\n          \"created_at\": \"1971-04-15T13:38:42.049Z\"\n        }\n      ],\n      \"created_at\": \"2020-11-04T14:19:15.579Z\",\n      \"updated_at\": \"1974-03-18T16:36:32.295Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 4380,\n    \"page\": 625,\n    \"per_page\": 3990,\n    \"total_pages\": 8327\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3deb53a6-a147-426a-aaaf-e13dc2fa28d6",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "due_before",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2473f24e-a138-41e8-9f16-8c2ea1c151aa",
+          "name": "Harbor Compliance Get a compliance filing",
+          "request": {
+            "name": "Harbor Compliance Get a compliance filing",
+            "description": {
+              "content": "Retrieves details about a specific compliance filing including its type, due date, status, and any documents associated with the filing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filings",
+                ":filingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "filingId",
+                  "description": "(Required) Unique identifier for the compliance filing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3914a11-b376-483a-9819-008d6a985498",
+              "name": "Compliance filing details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings",
+                    ":filingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filingId",
+                      "description": "(Required) Unique identifier for the compliance filing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"JC\",\n  \"filing_type\": \"annual_report\",\n  \"status\": \"waived\",\n  \"due_date\": \"2015-01-17\",\n  \"filed_date\": \"1947-01-18\",\n  \"fee\": 5823.705014570653,\n  \"filing_period\": \"string\",\n  \"documents\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"url\": \"http://azhdsmE.jcvtm.hFz0YPYjRGQCbvp,tRWO,dFoX3arCCPCsYz8y-mo5KF-GFN4VRj\",\n      \"created_at\": \"1961-12-18T02:13:57.697Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"url\": \"http://WLozGkDyJpqpvh.jsjFeoeZVdp8YsEEZic\",\n      \"created_at\": \"1985-12-24T15:09:11.830Z\"\n    }\n  ],\n  \"created_at\": \"1977-10-26T00:56:18.849Z\",\n  \"updated_at\": \"1951-11-06T05:35:27.514Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12d80b89-71b3-452c-8709-21d28411ddc3",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings",
+                    ":filingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filingId",
+                      "description": "(Required) Unique identifier for the compliance filing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5e3fbde-0b61-4848-bdcc-a71b34e4e062",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings",
+                    ":filingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filingId",
+                      "description": "(Required) Unique identifier for the compliance filing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "99cf5a9b-602c-4f4f-9d83-364a87c44fb3",
+      "name": "Entities",
+      "description": {
+        "content": "Business entity management including corporations, LLCs, and other legal entities.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9234e7b5-efd4-492f-bfb1-c2e2392bdacd",
+          "name": "Harbor Compliance List business entities",
+          "request": {
+            "name": "Harbor Compliance List business entities",
+            "description": {
+              "content": "Returns a paginated list of business entities managed under the partner account. Results can be filtered by entity type, state, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (1-based)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter entities by state of formation (two-letter state code)."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_type",
+                  "value": "<string>",
+                  "description": "Filter by entity type."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by entity status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40cefe20-568f-4705-8c68-22463cb2deb8",
+              "name": "A paginated list of business entities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"entity_type\": \"nonprofit\",\n      \"state\": \"XT\",\n      \"status\": \"active\",\n      \"ein\": \"38-3005533\",\n      \"formation_date\": \"2018-10-01\",\n      \"registered_agent_id\": \"string\",\n      \"principal_address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"WR\",\n        \"zip\": \"65553-5877\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      },\n      \"mailing_address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"YU\",\n        \"zip\": \"11480-7796\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      },\n      \"officers\": [\n        {\n          \"name\": \"string\",\n          \"title\": \"string\",\n          \"address\": {\n            \"street1\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"AB\",\n            \"zip\": \"97904\",\n            \"street2\": \"string\",\n            \"country\": \"US\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"title\": \"string\",\n          \"address\": {\n            \"street1\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"TL\",\n            \"zip\": \"20735\",\n            \"street2\": \"string\",\n            \"country\": \"US\"\n          }\n        }\n      ],\n      \"created_at\": \"1978-03-27T11:28:42.530Z\",\n      \"updated_at\": \"1971-08-29T11:42:42.488Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"entity_type\": \"nonprofit\",\n      \"state\": \"ME\",\n      \"status\": \"active\",\n      \"ein\": \"89-0144562\",\n      \"formation_date\": \"1981-12-24\",\n      \"registered_agent_id\": \"string\",\n      \"principal_address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"MS\",\n        \"zip\": \"42451-3201\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      },\n      \"mailing_address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"LT\",\n        \"zip\": \"11773\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      },\n      \"officers\": [\n        {\n          \"name\": \"string\",\n          \"title\": \"string\",\n          \"address\": {\n            \"street1\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"WM\",\n            \"zip\": \"63945\",\n            \"street2\": \"string\",\n            \"country\": \"US\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"title\": \"string\",\n          \"address\": {\n            \"street1\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"HC\",\n            \"zip\": \"57743-4336\",\n            \"street2\": \"string\",\n            \"country\": \"US\"\n          }\n        }\n      ],\n      \"created_at\": \"1989-04-25T07:19:43.153Z\",\n      \"updated_at\": \"1974-12-07T18:48:21.898Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 9067,\n    \"page\": 9877,\n    \"per_page\": 9282,\n    \"total_pages\": 6903\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df453b6f-7d4e-4563-b8dd-7d9a172f486d",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fd2476f-4c54-49b8-b472-9b18a3967ac3",
+          "name": "Harbor Compliance Create a business entity",
+          "request": {
+            "name": "Harbor Compliance Create a business entity",
+            "description": {
+              "content": "Creates a new business entity record in Harbor Compliance. This registers the entity for compliance tracking and monitoring across applicable jurisdictions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"entity_type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"formation_date\": \"<date>\",\n  \"principal_address\": {\n    \"street1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"address\": {\n        \"street1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"street2\": \"<string>\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"address\": {\n        \"street1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"street2\": \"<string>\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "002dd2b5-51de-4a7f-9c91-ae46675c4ade",
+              "name": "The newly created business entity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"entity_type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"formation_date\": \"<date>\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"PC\",\n    \"zip\": \"76991-1842\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"PV\",\n        \"zip\": \"17389\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"AV\",\n        \"zip\": \"66404\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"entity_type\": \"sole_proprietorship\",\n  \"state\": \"XZ\",\n  \"status\": \"pending\",\n  \"ein\": \"05-0756873\",\n  \"formation_date\": \"1995-04-30\",\n  \"registered_agent_id\": \"string\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"OO\",\n    \"zip\": \"30767-9647\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"mailing_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"EP\",\n    \"zip\": \"93001\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"TN\",\n        \"zip\": \"27852\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"NQ\",\n        \"zip\": \"35348\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ],\n  \"created_at\": \"2002-08-02T06:58:49.573Z\",\n  \"updated_at\": \"2005-02-05T13:10:18.205Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03e4bab0-070d-4ac1-b125-efd1a92f9ec2",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"entity_type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"formation_date\": \"<date>\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"PC\",\n    \"zip\": \"76991-1842\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"PV\",\n        \"zip\": \"17389\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"AV\",\n        \"zip\": \"66404\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f039022b-5cd4-4049-872e-46aa57dec774",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"entity_type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"formation_date\": \"<date>\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"PC\",\n    \"zip\": \"76991-1842\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"PV\",\n        \"zip\": \"17389\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"AV\",\n        \"zip\": \"66404\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e821e72a-bbe6-423a-afd3-31e992e84443",
+          "name": "Harbor Compliance Get a business entity",
+          "request": {
+            "name": "Harbor Compliance Get a business entity",
+            "description": {
+              "content": "Retrieves detailed information about a specific business entity including its formation details, registered agent, compliance status, and active licenses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                ":entityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityId",
+                  "description": "(Required) Unique identifier for the business entity."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e38ae7f7-b9da-4c69-84c5-55fc342d5f65",
+              "name": "Business entity details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"entity_type\": \"sole_proprietorship\",\n  \"state\": \"XZ\",\n  \"status\": \"pending\",\n  \"ein\": \"05-0756873\",\n  \"formation_date\": \"1995-04-30\",\n  \"registered_agent_id\": \"string\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"OO\",\n    \"zip\": \"30767-9647\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"mailing_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"EP\",\n    \"zip\": \"93001\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"TN\",\n        \"zip\": \"27852\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"NQ\",\n        \"zip\": \"35348\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ],\n  \"created_at\": \"2002-08-02T06:58:49.573Z\",\n  \"updated_at\": \"2005-02-05T13:10:18.205Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63a13346-6e8a-4c09-8aeb-b6286efe528f",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab5296a8-ec00-4a5c-b04a-5ab1007ddc3d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba5bec55-538c-419c-b8dc-8ad7feb894ad",
+          "name": "Harbor Compliance Update a business entity",
+          "request": {
+            "name": "Harbor Compliance Update a business entity",
+            "description": {
+              "content": "Updates mutable fields on a business entity record such as the contact information, principal address, and officer details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                ":entityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityId",
+                  "description": "(Required) Unique identifier for the business entity."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"principal_address\": {\n    \"street1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"mailing_address\": {\n    \"street1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"address\": {\n        \"street1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"street2\": \"<string>\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"address\": {\n        \"street1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"street2\": \"<string>\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a48f81a3-121a-4598-91eb-2f533230c688",
+              "name": "The updated business entity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"XU\",\n    \"zip\": \"29282\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"mailing_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"YT\",\n    \"zip\": \"15718\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"QB\",\n        \"zip\": \"06120\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"HU\",\n        \"zip\": \"99917-6651\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"entity_type\": \"sole_proprietorship\",\n  \"state\": \"XZ\",\n  \"status\": \"pending\",\n  \"ein\": \"05-0756873\",\n  \"formation_date\": \"1995-04-30\",\n  \"registered_agent_id\": \"string\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"OO\",\n    \"zip\": \"30767-9647\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"mailing_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"EP\",\n    \"zip\": \"93001\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"TN\",\n        \"zip\": \"27852\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"NQ\",\n        \"zip\": \"35348\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ],\n  \"created_at\": \"2002-08-02T06:58:49.573Z\",\n  \"updated_at\": \"2005-02-05T13:10:18.205Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4885bcef-d52a-4a5d-a674-642bf337bd07",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"XU\",\n    \"zip\": \"29282\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"mailing_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"YT\",\n    \"zip\": \"15718\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"QB\",\n        \"zip\": \"06120\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"HU\",\n        \"zip\": \"99917-6651\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b816c460-b31f-46d3-a4d9-bd0fff95273c",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"XU\",\n    \"zip\": \"29282\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"mailing_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"YT\",\n    \"zip\": \"15718\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"QB\",\n        \"zip\": \"06120\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"HU\",\n        \"zip\": \"99917-6651\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efb2a2c4-8c2f-4d8b-9d32-885f7dc21977",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"principal_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"XU\",\n    \"zip\": \"29282\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"mailing_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"YT\",\n    \"zip\": \"15718\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"officers\": [\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"QB\",\n        \"zip\": \"06120\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"HU\",\n        \"zip\": \"99917-6651\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4018470a-60b0-47f8-b9ab-c8f4c601ca15",
+          "name": "Harbor Compliance Get compliance status for an entity",
+          "request": {
+            "name": "Harbor Compliance Get compliance status for an entity",
+            "description": {
+              "content": "Returns the full compliance status for a business entity including upcoming filing deadlines, overdue items, and a summary of active compliance requirements across all jurisdictions where the entity operates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                ":entityId",
+                "compliance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityId",
+                  "description": "(Required) Unique identifier for the business entity."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14d96fd8-24a1-48d3-a5b8-e7c5e68ad588",
+              "name": "Entity compliance status summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId",
+                    "compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entity_id\": \"string\",\n  \"overall_status\": \"non_compliant\",\n  \"upcoming_deadlines\": [\n    {\n      \"type\": \"license_renewal\",\n      \"state\": \"WR\",\n      \"due_date\": \"1983-02-14\",\n      \"status\": \"in_progress\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    },\n    {\n      \"type\": \"registered_agent\",\n      \"state\": \"MI\",\n      \"due_date\": \"2007-07-11\",\n      \"status\": \"pending\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    }\n  ],\n  \"overdue_items\": [\n    {\n      \"type\": \"other\",\n      \"state\": \"WS\",\n      \"due_date\": \"2017-10-04\",\n      \"status\": \"overdue\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    },\n    {\n      \"type\": \"annual_report\",\n      \"state\": \"BQ\",\n      \"due_date\": \"2007-11-02\",\n      \"status\": \"overdue\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    }\n  ],\n  \"active_licenses_count\": 5490,\n  \"expiring_licenses_count\": 1259,\n  \"registered_agent_states\": [\n    \"XS\",\n    \"PE\"\n  ],\n  \"generated_at\": \"1955-04-05T05:21:59.171Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad8dcc3c-c417-4e63-8031-303fad1cde64",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId",
+                    "compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f3498f5-24b0-497b-b304-fd2e81f2b03c",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId",
+                    "compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "adccab50-505d-4c70-8d66-584ea6ebcc95",
+      "name": "Jurisdictions",
+      "description": {
+        "content": "State and jurisdiction information for compliance requirements.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "918000bd-2fc8-4ccf-88d7-be96034b9e00",
+          "name": "Harbor Compliance List jurisdictions",
+          "request": {
+            "name": "Harbor Compliance List jurisdictions",
+            "description": {
+              "content": "Returns a list of all supported jurisdictions with their compliance requirements, filing fees, and annual report due dates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jurisdictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entity_type",
+                  "value": "<string>",
+                  "description": "Filter jurisdictions by supported entity type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70c95a7d-ee5f-4832-bdb3-c31d873c0042",
+              "name": "A list of supported jurisdictions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"state\": \"EM\",\n      \"name\": \"string\",\n      \"annual_report_due\": \"string\",\n      \"registered_agent_required\": true,\n      \"supported_entity_types\": [\n        \"llc\",\n        \"corporation\"\n      ],\n      \"filing_fees\": {\n        \"key_0\": 2960.8461076765548,\n        \"key_1\": 7103.077998422519\n      }\n    },\n    {\n      \"state\": \"RT\",\n      \"name\": \"string\",\n      \"annual_report_due\": \"string\",\n      \"registered_agent_required\": true,\n      \"supported_entity_types\": [\n        \"corporation\",\n        \"lp\"\n      ],\n      \"filing_fees\": {\n        \"key_0\": 6228.004088726059\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac03fb32-adde-4f64-b836-012332d3c75d",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b95d3f0-3cd1-4462-bd6c-72e75be405ba",
+          "name": "Harbor Compliance Get jurisdiction details",
+          "request": {
+            "name": "Harbor Compliance Get jurisdiction details",
+            "description": {
+              "content": "Retrieves detailed compliance requirements for a specific state jurisdiction including annual report deadlines, filing fees, and registered agent requirements by entity type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jurisdictions",
+                ":state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "state",
+                  "description": "(Required) Two-letter state code (e.g., CA, NY, DE)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce114cee-31bf-4ac3-84e9-7ca4fbb66434",
+              "name": "Jurisdiction compliance details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions",
+                    ":state"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "state",
+                      "description": "(Required) Two-letter state code (e.g., CA, NY, DE)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"state\": \"BW\",\n  \"name\": \"string\",\n  \"annual_report_due\": \"string\",\n  \"registered_agent_required\": true,\n  \"supported_entity_types\": [\n    \"llc\",\n    \"llp\"\n  ],\n  \"filing_fees\": {\n    \"key_0\": 7758.349523891343,\n    \"key_1\": 6546.570353006435,\n    \"key_2\": 1933.934057414346\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf1adbed-cf2a-4955-ba2d-54ec337f1047",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions",
+                    ":state"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "state",
+                      "description": "(Required) Two-letter state code (e.g., CA, NY, DE)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22f771a7-d0e4-4ebf-9a42-7d15556e7d24",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions",
+                    ":state"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "state",
+                      "description": "(Required) Two-letter state code (e.g., CA, NY, DE)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f23877cc-a6ee-4f9a-8934-b8b50bc11133",
+      "name": "Licenses",
+      "description": {
+        "content": "Business license applications, renewals, and status tracking across jurisdictions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e591c259-82b2-4912-9afa-41418331810c",
+          "name": "Harbor Compliance List business licenses",
+          "request": {
+            "name": "Harbor Compliance List business licenses",
+            "description": {
+              "content": "Returns a paginated list of business licenses managed for partner entities. Licenses can be filtered by entity, jurisdiction, license type, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (1-based)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<string>",
+                  "description": "Filter licenses by entity identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter licenses by state jurisdiction."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by license status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71e7ddce-c7b7-4e8e-9bf5-8a74bdd9fb65",
+              "name": "A paginated list of business licenses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"QM\",\n      \"license_type\": \"string\",\n      \"status\": \"revoked\",\n      \"license_number\": \"string\",\n      \"issued_date\": \"2003-03-03\",\n      \"expiration_date\": \"1962-04-23\",\n      \"renewal_date\": \"1999-01-24\",\n      \"agency\": \"string\",\n      \"created_at\": \"1972-05-04T20:59:34.141Z\",\n      \"updated_at\": \"1971-03-15T14:14:04.453Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"AT\",\n      \"license_type\": \"string\",\n      \"status\": \"pending\",\n      \"license_number\": \"string\",\n      \"issued_date\": \"2010-02-24\",\n      \"expiration_date\": \"1959-06-04\",\n      \"renewal_date\": \"1990-05-26\",\n      \"agency\": \"string\",\n      \"created_at\": \"1995-11-14T03:55:58.427Z\",\n      \"updated_at\": \"2018-07-10T19:07:47.972Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 8699,\n    \"page\": 1071,\n    \"per_page\": 9392,\n    \"total_pages\": 5018\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d5c5d54-5596-4357-9ffb-6fcbc670f579",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "544d77af-61c4-43b1-8db9-7bf5d202f3d0",
+          "name": "Harbor Compliance Create a license application",
+          "request": {
+            "name": "Harbor Compliance Create a license application",
+            "description": {
+              "content": "Submits a new business license application for a specified entity and jurisdiction. Harbor Compliance will process the application and update the status as it progresses through the licensing workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"license_type\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06215ed4-477b-4d5e-b640-767102ba592b",
+              "name": "The newly created license application.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"license_type\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"ZM\",\n  \"license_type\": \"string\",\n  \"status\": \"pending\",\n  \"license_number\": \"string\",\n  \"issued_date\": \"1957-08-01\",\n  \"expiration_date\": \"1965-03-12\",\n  \"renewal_date\": \"1971-06-23\",\n  \"agency\": \"string\",\n  \"created_at\": \"1979-10-06T11:38:39.296Z\",\n  \"updated_at\": \"1947-11-27T07:47:45.407Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8eca3c7-dfae-4696-a56d-65fc82c7dfea",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"license_type\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d261e27-7cb4-45ea-9494-31bab722d120",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"license_type\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "502f81a6-bcf1-45d3-9690-0378ae0cfb35",
+          "name": "Harbor Compliance Get a business license",
+          "request": {
+            "name": "Harbor Compliance Get a business license",
+            "description": {
+              "content": "Retrieves detailed information about a specific business license including its current status, expiration date, renewal requirements, and associated filings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses",
+                ":licenseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "licenseId",
+                  "description": "(Required) Unique identifier for the business license."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c86ed27b-8e3b-41ac-a2bc-31b329dfb97d",
+              "name": "Business license details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"ZM\",\n  \"license_type\": \"string\",\n  \"status\": \"pending\",\n  \"license_number\": \"string\",\n  \"issued_date\": \"1957-08-01\",\n  \"expiration_date\": \"1965-03-12\",\n  \"renewal_date\": \"1971-06-23\",\n  \"agency\": \"string\",\n  \"created_at\": \"1979-10-06T11:38:39.296Z\",\n  \"updated_at\": \"1947-11-27T07:47:45.407Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a61864b6-b95d-4565-8cbe-a4a541ae2e91",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f873afa4-ba06-4384-b873-632b38d832a2",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b25dcd7-a48c-4bed-9026-701438e66caa",
+          "name": "Harbor Compliance Renew a business license",
+          "request": {
+            "name": "Harbor Compliance Renew a business license",
+            "description": {
+              "content": "Initiates the renewal process for an existing business license. This creates a renewal order that Harbor Compliance will process through the appropriate jurisdiction's renewal workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses",
+                ":licenseId",
+                "renew"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "licenseId",
+                  "description": "(Required) Unique identifier for the business license."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a494ebfe-8c49-4cb3-a560-10862ec5efa2",
+              "name": "The updated license record with renewal initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId",
+                    "renew"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"ZM\",\n  \"license_type\": \"string\",\n  \"status\": \"pending\",\n  \"license_number\": \"string\",\n  \"issued_date\": \"1957-08-01\",\n  \"expiration_date\": \"1965-03-12\",\n  \"renewal_date\": \"1971-06-23\",\n  \"agency\": \"string\",\n  \"created_at\": \"1979-10-06T11:38:39.296Z\",\n  \"updated_at\": \"1947-11-27T07:47:45.407Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55d292f4-2046-41e4-a582-cc7409c7549e",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId",
+                    "renew"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "709343cb-3d34-4fb7-8525-433e170c4d79",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId",
+                    "renew"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a5d2dc2-478a-4878-88d3-b9539a025085",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId",
+                    "renew"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "883b35e0-0061-4a3d-8791-4b666f2bba03",
+      "name": "Orders",
+      "description": {
+        "content": "Compliance service orders and fulfillment tracking.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c5d6909-c7bd-42b1-b176-60dbfc7386e1",
+          "name": "Harbor Compliance List service orders",
+          "request": {
+            "name": "Harbor Compliance List service orders",
+            "description": {
+              "content": "Returns a paginated list of compliance service orders placed through the Harbor Compliance partner account. Orders represent discrete compliance tasks being fulfilled by Harbor Compliance staff.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (1-based)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<string>",
+                  "description": "Filter orders by entity identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by order status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff3f04af-ab83-4667-ad08-61c556b0f52f",
+              "name": "A paginated list of service orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"service_type\": \"dissolution\",\n      \"status\": \"completed\",\n      \"description\": \"string\",\n      \"price\": 7013.253284369199,\n      \"reference_id\": \"string\",\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"https://BvbuiBUYafMthXKRNNJCzjeaxH.yyhtlwZggHYrqZhLfDN6Z8j8v3qkNruoySq\",\n          \"created_at\": \"1991-01-27T04:14:47.725Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://YxlyraMAxRNpKbxrXH.yniiWJe6qvVGNi-9-VCFag6LVZvHNGKOWZG-ZM3IjDPvnFJ3mlXhnf\",\n          \"created_at\": \"1966-10-06T12:19:37.531Z\"\n        }\n      ],\n      \"created_at\": \"1963-12-27T21:24:59.100Z\",\n      \"updated_at\": \"1998-01-03T15:46:36.914Z\",\n      \"completed_at\": \"1998-07-07T06:52:13.661Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"service_type\": \"formation\",\n      \"status\": \"processing\",\n      \"description\": \"string\",\n      \"price\": 3952.184516978415,\n      \"reference_id\": \"string\",\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://PIiP.lazTSQ6hVw6u8oSlXsAU6,db94CB,Gg6lQSwqtkjM5xVDI4\",\n          \"created_at\": \"2011-10-05T10:56:28.433Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"https://XGnzmK.xbrhAaLT1GRx2T10+xKuLCodqa2pZrEOrAO8276O8rb1j9zg\",\n          \"created_at\": \"1957-08-31T03:04:08.429Z\"\n        }\n      ],\n      \"created_at\": \"1989-11-17T17:52:46.981Z\",\n      \"updated_at\": \"2020-05-10T20:19:57.391Z\",\n      \"completed_at\": \"2019-09-23T10:19:32.727Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 8150,\n    \"page\": 7200,\n    \"per_page\": 7653,\n    \"total_pages\": 8434\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78a91dbe-fec0-4be6-aa6a-3d41c7dca18b",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc63bb47-7293-4218-9bf1-b661fbd849df",
+          "name": "Harbor Compliance Get a service order",
+          "request": {
+            "name": "Harbor Compliance Get a service order",
+            "description": {
+              "content": "Retrieves details about a specific compliance service order including its current status, associated entity, service type, and any documents produced.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) Unique identifier for the service order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1cef9fcc-0689-4c14-860b-80190dc07c87",
+              "name": "Service order details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique identifier for the service order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"service_type\": \"registered_agent\",\n  \"status\": \"pending\",\n  \"description\": \"string\",\n  \"price\": 8422.79530773489,\n  \"reference_id\": \"string\",\n  \"documents\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"url\": \"https://MqeYKeZlsGExCKhBcGtM.stkFHkQutf,0KnKUz1EOhokoyb4xl-a.je9tAz+T4tctFNpR9sNJHp7QFIZJRFG9I\",\n      \"created_at\": \"1947-09-07T18:46:06.483Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"url\": \"http://CLhDc.vdcF.GGTN7MhcSY7FO-ScqdwmedmfKIpKQnb8VKaCgx\",\n      \"created_at\": \"1974-01-15T11:23:43.059Z\"\n    }\n  ],\n  \"created_at\": \"1986-11-19T13:05:51.676Z\",\n  \"updated_at\": \"1976-04-29T15:55:21.181Z\",\n  \"completed_at\": \"1988-06-25T14:08:13.769Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8809210d-1ae5-4c37-b025-d35fae4a5f92",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique identifier for the service order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13cf9de2-3501-405b-95ca-ac7117552fbf",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique identifier for the service order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "75bba6c4-ca09-453b-bb04-c9de90fc2da6",
+      "name": "Registered Agents",
+      "description": {
+        "content": "Registered agent appointment and management for business entities.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cbb0b042-4b6b-477d-b51d-505004ba13b6",
+          "name": "Harbor Compliance List registered agent appointments",
+          "request": {
+            "name": "Harbor Compliance List registered agent appointments",
+            "description": {
+              "content": "Returns a paginated list of registered agent appointments for entities managed under the partner account. Includes appointment status and jurisdiction details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registered-agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (1-based)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<string>",
+                  "description": "Filter by entity identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by state jurisdiction."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a012046a-50f7-482f-9e94-88e3ce1de37d",
+              "name": "A paginated list of registered agent appointments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"AD\",\n      \"status\": \"revoked\",\n      \"agent_name\": \"string\",\n      \"agent_address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"EZ\",\n        \"zip\": \"85337\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      },\n      \"appointment_date\": \"1960-04-05\",\n      \"created_at\": \"2020-05-10T15:32:25.467Z\",\n      \"updated_at\": \"1956-11-25T12:18:48.077Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"GZ\",\n      \"status\": \"resigned\",\n      \"agent_name\": \"string\",\n      \"agent_address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"IL\",\n        \"zip\": \"26157\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      },\n      \"appointment_date\": \"1948-05-11\",\n      \"created_at\": \"2018-08-10T08:20:20.174Z\",\n      \"updated_at\": \"2013-11-12T03:40:57.233Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 4696,\n    \"page\": 2522,\n    \"per_page\": 2235,\n    \"total_pages\": 314\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4501495e-56a5-4ce7-ae60-d075e932301c",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "100efdad-6a6f-45e9-a999-440d8c80294a",
+          "name": "Harbor Compliance Appoint a registered agent",
+          "request": {
+            "name": "Harbor Compliance Appoint a registered agent",
+            "description": {
+              "content": "Creates a new registered agent appointment for a business entity in a specified state. Harbor Compliance will file the necessary paperwork with the state to formalize the appointment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registered-agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2cd9f5bc-9290-44b3-a9eb-4b350a05b17f",
+              "name": "The newly created registered agent appointment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"KX\",\n  \"status\": \"resigned\",\n  \"agent_name\": \"string\",\n  \"agent_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"EV\",\n    \"zip\": \"90465-5763\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"appointment_date\": \"2001-03-10\",\n  \"created_at\": \"1998-09-26T06:49:13.970Z\",\n  \"updated_at\": \"1957-03-11T20:22:09.704Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74bead2e-9b15-40ee-be55-b80d89ca42cf",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e203f5b4-c9ec-4fda-b7b5-ef25e98c6a5e",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7907616-b4cf-4fe9-bb03-7b8b55094113",
+          "name": "Harbor Compliance Get a registered agent appointment",
+          "request": {
+            "name": "Harbor Compliance Get a registered agent appointment",
+            "description": {
+              "content": "Retrieves details about a specific registered agent appointment including the agent's address, appointment status, and associated entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registered-agents",
+                ":agentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentId",
+                  "description": "(Required) Unique identifier for the registered agent appointment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70205cd2-76b0-4cbe-9f42-2e75f809e7a6",
+              "name": "Registered agent appointment details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents",
+                    ":agentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentId",
+                      "description": "(Required) Unique identifier for the registered agent appointment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"KX\",\n  \"status\": \"resigned\",\n  \"agent_name\": \"string\",\n  \"agent_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"EV\",\n    \"zip\": \"90465-5763\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"appointment_date\": \"2001-03-10\",\n  \"created_at\": \"1998-09-26T06:49:13.970Z\",\n  \"updated_at\": \"1957-03-11T20:22:09.704Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ddb3a22-460f-4234-ba9c-a2a15b3164ab",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents",
+                    ":agentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentId",
+                      "description": "(Required) Unique identifier for the registered agent appointment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46651491-144a-4ebc-aec7-82d3bfb7b9fd",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents",
+                    ":agentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentId",
+                      "description": "(Required) Unique identifier for the registered agent appointment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.harborcompliance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "012e26b0-724d-434f-b7cd-21ea5ef44d67",
+    "name": "Harbor Compliance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.\n\nContact Support:\n Name: Harbor Compliance Support",
+      "type": "text/plain"
+    }
+  }
+}
