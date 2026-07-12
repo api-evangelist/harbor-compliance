@@ -35,6 +35,10 @@ apis:
       - type: JSONSchema
         url: json-schema/harbor-compliance-entity-schema.json
 common:
+  - type: DomainSecurity
+    url: security/harbor-compliance-domain-security.yml
+  - type: Authentication
+    url: authentication/harbor-compliance-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/harbor-compliance
   - type: Portal

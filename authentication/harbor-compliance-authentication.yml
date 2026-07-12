@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/harbor-compliance-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: API key for authenticating partner requests. Obtain your API key from the Harbor
+    Compliance developer portal.
+  sources:
+  - openapi/harbor-compliance-openapi.yml
