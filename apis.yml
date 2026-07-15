@@ -35,6 +35,8 @@ apis:
       - type: JSONSchema
         url: json-schema/harbor-compliance-entity-schema.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/harbor-compliance-agentic-access.yml
   - type: DomainSecurity
     url: security/harbor-compliance-domain-security.yml
   - type: Authentication
