@@ -1,0 +1,318 @@
+openapi: 3.1.0
+info:
+  title: Harbor Compliance Compliance Filings Licenses API
+  description: The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.
+  version: '1.0'
+  contact:
+    name: Harbor Compliance Support
+    url: https://www.harborcompliance.com/contact
+  termsOfService: https://www.harborcompliance.com/terms-of-service
+servers:
+- url: https://api.harborcompliance.com/v1
+  description: Production Server
+security:
+- apiKey: []
+tags:
+- name: Licenses
+  description: Business license applications, renewals, and status tracking across jurisdictions.
+paths:
+  /licenses:
+    get:
+      operationId: listLicenses
+      summary: Harbor Compliance List business licenses
+      description: Returns a paginated list of business licenses managed for partner entities. Licenses can be filtered by entity, jurisdiction, license type, and status.
+      tags:
+      - Licenses
+      parameters:
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/perPageParam'
+      - name: entity_id
+        in: query
+        description: Filter licenses by entity identifier.
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: Filter licenses by state jurisdiction.
+        schema:
+          type: string
+          pattern: ^[A-Z]{2}$
+      - name: status
+        in: query
+        description: Filter by license status.
+        schema:
+          type: string
+          enum:
+          - active
+          - pending
+          - expired
+          - revoked
+      responses:
+        '200':
+          description: A paginated list of business licenses.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/License'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createLicense
+      summary: Harbor Compliance Create a license application
+      description: Submits a new business license application for a specified entity and jurisdiction. Harbor Compliance will process the application and update the status as it progresses through the licensing workflow.
+      tags:
+      - Licenses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseCreate'
+      responses:
+        '201':
+          description: The newly created license application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/License'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /licenses/{licenseId}:
+    get:
+      operationId: getLicense
+      summary: Harbor Compliance Get a business license
+      description: Retrieves detailed information about a specific business license including its current status, expiration date, renewal requirements, and associated filings.
+      tags:
+      - Licenses
+      parameters:
+      - $ref: '#/components/parameters/licenseIdParam'
+      responses:
+        '200':
+          description: Business license details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/License'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /licenses/{licenseId}/renew:
+    post:
+      operationId: renewLicense
+      summary: Harbor Compliance Renew a business license
+      description: Initiates the renewal process for an existing business license. This creates a renewal order that Harbor Compliance will process through the appropriate jurisdiction's renewal workflow.
+      tags:
+      - Licenses
+      parameters:
+      - $ref: '#/components/parameters/licenseIdParam'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notes:
+                  type: string
+                  description: Optional notes for the renewal request.
+      responses:
+        '200':
+          description: The updated license record with renewal initiated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/License'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    licenseIdParam:
+      name: licenseId
+      in: path
+      required: true
+      description: Unique identifier for the business license.
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Page number for paginated results (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    perPageParam:
+      name: per_page
+      in: query
+      description: Number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    LicenseCreate:
+      type: object
+      title: LicenseCreate
+      description: Fields required to submit a new business license application.
+      required:
+      - entity_id
+      - state
+      - license_type
+      properties:
+        entity_id:
+          type: string
+          description: Identifier of the entity applying for the license.
+        state:
+          type: string
+          description: Two-letter state code for the licensing jurisdiction.
+          pattern: ^[A-Z]{2}$
+        license_type:
+          type: string
+          description: Type of business license being applied for.
+        notes:
+          type: string
+          description: Additional notes or instructions for the license application.
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+    License:
+      type: object
+      title: License
+      description: A business license held by an entity in a specific jurisdiction.
+      required:
+      - id
+      - entity_id
+      - state
+      - license_type
+      - status
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the license.
+        entity_id:
+          type: string
+          description: Identifier of the entity that holds this license.
+        state:
+          type: string
+          description: Two-letter state code for the licensing jurisdiction.
+          pattern: ^[A-Z]{2}$
+        license_type:
+          type: string
+          description: Type or category of business license.
+        license_number:
+          type: string
+          description: License number assigned by the issuing jurisdiction.
+        status:
+          type: string
+          description: Current status of the license.
+          enum:
+          - active
+          - pending
+          - expired
+          - revoked
+        issued_date:
+          type: string
+          format: date
+          description: Date the license was issued.
+        expiration_date:
+          type: string
+          format: date
+          description: Date the license expires and must be renewed.
+        renewal_date:
+          type: string
+          format: date
+          description: Date by which the renewal must be submitted to avoid lapse.
+        agency:
+          type: string
+          description: Name of the government agency that issued the license.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the license record was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last update.
+    Error:
+      type: object
+      title: Error
+      description: Error response returned when a request fails.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+        details:
+          type: array
+          description: Additional details about specific validation errors.
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: The field that caused the error.
+              message:
+                type: string
+                description: Description of the field-level error.
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating partner requests. Obtain your API key from the Harbor Compliance developer portal.
+externalDocs:
+  description: Harbor Compliance Developer Documentation
+  url: https://developers.harborcompliance.com/

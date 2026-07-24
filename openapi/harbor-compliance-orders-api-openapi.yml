@@ -1,0 +1,258 @@
+openapi: 3.1.0
+info:
+  title: Harbor Compliance Compliance Filings Orders API
+  description: The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.
+  version: '1.0'
+  contact:
+    name: Harbor Compliance Support
+    url: https://www.harborcompliance.com/contact
+  termsOfService: https://www.harborcompliance.com/terms-of-service
+servers:
+- url: https://api.harborcompliance.com/v1
+  description: Production Server
+security:
+- apiKey: []
+tags:
+- name: Orders
+  description: Compliance service orders and fulfillment tracking.
+paths:
+  /orders:
+    get:
+      operationId: listOrders
+      summary: Harbor Compliance List service orders
+      description: Returns a paginated list of compliance service orders placed through the Harbor Compliance partner account. Orders represent discrete compliance tasks being fulfilled by Harbor Compliance staff.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/perPageParam'
+      - name: entity_id
+        in: query
+        description: Filter orders by entity identifier.
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by order status.
+        schema:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - cancelled
+      responses:
+        '200':
+          description: A paginated list of service orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Harbor Compliance Get a service order
+      description: Retrieves details about a specific compliance service order including its current status, associated entity, service type, and any documents produced.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/orderIdParam'
+      responses:
+        '200':
+          description: Service order details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Page number for paginated results (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    orderIdParam:
+      name: orderId
+      in: path
+      required: true
+      description: Unique identifier for the service order.
+      schema:
+        type: string
+    perPageParam:
+      name: per_page
+      in: query
+      description: Number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  schemas:
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+    Document:
+      type: object
+      title: Document
+      description: A document associated with a filing or order.
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document.
+        name:
+          type: string
+          description: Display name of the document.
+        type:
+          type: string
+          description: Document type (e.g., filed_report, confirmation, receipt).
+        url:
+          type: string
+          format: uri
+          description: URL to download or view the document.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the document was created.
+    Order:
+      type: object
+      title: Order
+      description: A compliance service order placed through Harbor Compliance.
+      required:
+      - id
+      - entity_id
+      - service_type
+      - status
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the order.
+        entity_id:
+          type: string
+          description: Identifier of the entity this order is for.
+        service_type:
+          type: string
+          description: Type of compliance service ordered.
+          enum:
+          - registered_agent
+          - annual_report_filing
+          - license_application
+          - license_renewal
+          - formation
+          - dissolution
+          - foreign_qualification
+          - other
+        status:
+          type: string
+          description: Current status of the order.
+          enum:
+          - pending
+          - processing
+          - completed
+          - cancelled
+        description:
+          type: string
+          description: Human-readable description of the ordered service.
+        price:
+          type: number
+          description: Price of the service order in USD.
+        reference_id:
+          type: string
+          description: Reference identifier linking this order to a related resource (e.g., license ID or filing ID).
+        documents:
+          type: array
+          description: Documents produced or required for this order.
+          items:
+            $ref: '#/components/schemas/Document'
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the order was placed.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last status update.
+        completed_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the order was completed, if applicable.
+    Error:
+      type: object
+      title: Error
+      description: Error response returned when a request fails.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+        details:
+          type: array
+          description: Additional details about specific validation errors.
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: The field that caused the error.
+              message:
+                type: string
+                description: Description of the field-level error.
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating partner requests. Obtain your API key from the Harbor Compliance developer portal.
+externalDocs:
+  description: Harbor Compliance Developer Documentation
+  url: https://developers.harborcompliance.com/

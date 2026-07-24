@@ -1,0 +1,164 @@
+openapi: 3.1.0
+info:
+  title: Harbor Compliance Compliance Filings Jurisdictions API
+  description: The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.
+  version: '1.0'
+  contact:
+    name: Harbor Compliance Support
+    url: https://www.harborcompliance.com/contact
+  termsOfService: https://www.harborcompliance.com/terms-of-service
+servers:
+- url: https://api.harborcompliance.com/v1
+  description: Production Server
+security:
+- apiKey: []
+tags:
+- name: Jurisdictions
+  description: State and jurisdiction information for compliance requirements.
+paths:
+  /jurisdictions:
+    get:
+      operationId: listJurisdictions
+      summary: Harbor Compliance List jurisdictions
+      description: Returns a list of all supported jurisdictions with their compliance requirements, filing fees, and annual report due dates.
+      tags:
+      - Jurisdictions
+      parameters:
+      - name: entity_type
+        in: query
+        description: Filter jurisdictions by supported entity type.
+        schema:
+          type: string
+          enum:
+          - corporation
+          - llc
+          - lp
+          - llp
+          - nonprofit
+      responses:
+        '200':
+          description: A list of supported jurisdictions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Jurisdiction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /jurisdictions/{state}:
+    get:
+      operationId: getJurisdiction
+      summary: Harbor Compliance Get jurisdiction details
+      description: Retrieves detailed compliance requirements for a specific state jurisdiction including annual report deadlines, filing fees, and registered agent requirements by entity type.
+      tags:
+      - Jurisdictions
+      parameters:
+      - name: state
+        in: path
+        required: true
+        description: Two-letter state code (e.g., CA, NY, DE).
+        schema:
+          type: string
+          pattern: ^[A-Z]{2}$
+      responses:
+        '200':
+          description: Jurisdiction compliance details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Jurisdiction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      title: Error
+      description: Error response returned when a request fails.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+        details:
+          type: array
+          description: Additional details about specific validation errors.
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: The field that caused the error.
+              message:
+                type: string
+                description: Description of the field-level error.
+    Jurisdiction:
+      type: object
+      title: Jurisdiction
+      description: A U.S. state jurisdiction with its compliance requirements.
+      required:
+      - state
+      - name
+      properties:
+        state:
+          type: string
+          description: Two-letter state code.
+          pattern: ^[A-Z]{2}$
+        name:
+          type: string
+          description: Full name of the state or jurisdiction.
+        annual_report_due:
+          type: string
+          description: Description of when annual reports are due (e.g., 'April 15 each year').
+        registered_agent_required:
+          type: boolean
+          description: Whether a registered agent is required for business entities in this state.
+        supported_entity_types:
+          type: array
+          description: Entity types supported for registration in this jurisdiction.
+          items:
+            type: string
+            enum:
+            - corporation
+            - llc
+            - lp
+            - llp
+            - nonprofit
+        filing_fees:
+          type: object
+          description: Map of entity type to annual report filing fee in USD.
+          additionalProperties:
+            type: number
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating partner requests. Obtain your API key from the Harbor Compliance developer portal.
+externalDocs:
+  description: Harbor Compliance Developer Documentation
+  url: https://developers.harborcompliance.com/

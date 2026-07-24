@@ -1,0 +1,393 @@
+openapi: 3.1.0
+info:
+  title: Harbor Compliance Compliance Filings API
+  description: The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.
+  version: '1.0'
+  contact:
+    name: Harbor Compliance Support
+    url: https://www.harborcompliance.com/contact
+  termsOfService: https://www.harborcompliance.com/terms-of-service
+servers:
+- url: https://api.harborcompliance.com/v1
+  description: Production Server
+security:
+- apiKey: []
+tags:
+- name: Compliance Filings
+  description: Annual reports, compliance filings, and deadline tracking.
+paths:
+  /entities/{entityId}/compliance:
+    get:
+      operationId: getEntityCompliance
+      summary: Harbor Compliance Get compliance status for an entity
+      description: Returns the full compliance status for a business entity including upcoming filing deadlines, overdue items, and a summary of active compliance requirements across all jurisdictions where the entity operates.
+      tags:
+      - Compliance Filings
+      parameters:
+      - $ref: '#/components/parameters/entityIdParam'
+      responses:
+        '200':
+          description: Entity compliance status summary.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /filings:
+    get:
+      operationId: listFilings
+      summary: Harbor Compliance List compliance filings
+      description: Returns a paginated list of compliance filings including annual reports, statements of information, and other required regulatory submissions. Results can be filtered by entity, state, filing type, and status.
+      tags:
+      - Compliance Filings
+      parameters:
+      - $ref: '#/components/parameters/pageParam'
+      - $ref: '#/components/parameters/perPageParam'
+      - name: entity_id
+        in: query
+        description: Filter filings by entity identifier.
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: Filter filings by state jurisdiction.
+        schema:
+          type: string
+          pattern: ^[A-Z]{2}$
+      - name: status
+        in: query
+        description: Filter by filing status.
+        schema:
+          type: string
+          enum:
+          - pending
+          - in_progress
+          - filed
+          - overdue
+          - waived
+      - name: due_before
+        in: query
+        description: Filter filings due before this date (ISO 8601 date).
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: A paginated list of compliance filings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Filing'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /filings/{filingId}:
+    get:
+      operationId: getFiling
+      summary: Harbor Compliance Get a compliance filing
+      description: Retrieves details about a specific compliance filing including its type, due date, status, and any documents associated with the filing.
+      tags:
+      - Compliance Filings
+      parameters:
+      - $ref: '#/components/parameters/filingIdParam'
+      responses:
+        '200':
+          description: Compliance filing details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filing'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ComplianceDeadline:
+      type: object
+      title: ComplianceDeadline
+      description: A single upcoming or overdue compliance deadline.
+      required:
+      - type
+      - state
+      - due_date
+      - status
+      properties:
+        type:
+          type: string
+          description: Type of compliance requirement.
+          enum:
+          - annual_report
+          - biennial_report
+          - license_renewal
+          - registered_agent
+          - franchise_tax
+          - other
+        state:
+          type: string
+          description: Two-letter state code for the jurisdiction.
+          pattern: ^[A-Z]{2}$
+        due_date:
+          type: string
+          format: date
+          description: Date the compliance item is due.
+        status:
+          type: string
+          description: Current status of the compliance item.
+          enum:
+          - pending
+          - in_progress
+          - overdue
+        description:
+          type: string
+          description: Human-readable description of the compliance requirement.
+        filing_id:
+          type: string
+          description: Reference to the associated filing record, if applicable.
+        license_id:
+          type: string
+          description: Reference to the associated license record, if applicable.
+    Filing:
+      type: object
+      title: Filing
+      description: A required compliance filing such as an annual report or statement of information.
+      required:
+      - id
+      - entity_id
+      - state
+      - filing_type
+      - status
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the filing.
+        entity_id:
+          type: string
+          description: Identifier of the entity required to submit this filing.
+        state:
+          type: string
+          description: Two-letter state code of the filing jurisdiction.
+          pattern: ^[A-Z]{2}$
+        filing_type:
+          type: string
+          description: Type of required compliance filing.
+          enum:
+          - annual_report
+          - biennial_report
+          - statement_of_information
+          - franchise_tax
+          - beneficial_ownership
+          - other
+        status:
+          type: string
+          description: Current status of the filing.
+          enum:
+          - pending
+          - in_progress
+          - filed
+          - overdue
+          - waived
+        due_date:
+          type: string
+          format: date
+          description: Date by which the filing must be submitted to the state.
+        filed_date:
+          type: string
+          format: date
+          description: Date the filing was actually submitted, if completed.
+        fee:
+          type: number
+          description: Filing fee in USD charged by the state.
+        filing_period:
+          type: string
+          description: The period or year covered by this filing (e.g., '2025').
+        documents:
+          type: array
+          description: Documents associated with this filing.
+          items:
+            $ref: '#/components/schemas/Document'
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the filing record was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last update.
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+    Document:
+      type: object
+      title: Document
+      description: A document associated with a filing or order.
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document.
+        name:
+          type: string
+          description: Display name of the document.
+        type:
+          type: string
+          description: Document type (e.g., filed_report, confirmation, receipt).
+        url:
+          type: string
+          format: uri
+          description: URL to download or view the document.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the document was created.
+    Error:
+      type: object
+      title: Error
+      description: Error response returned when a request fails.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+        details:
+          type: array
+          description: Additional details about specific validation errors.
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: The field that caused the error.
+              message:
+                type: string
+                description: Description of the field-level error.
+    ComplianceStatus:
+      type: object
+      title: ComplianceStatus
+      description: A summary of the compliance status for a business entity.
+      required:
+      - entity_id
+      - overall_status
+      properties:
+        entity_id:
+          type: string
+          description: Identifier of the entity this status applies to.
+        overall_status:
+          type: string
+          description: Overall compliance health status for the entity.
+          enum:
+          - compliant
+          - attention_required
+          - non_compliant
+        upcoming_deadlines:
+          type: array
+          description: Compliance items due within the next 90 days.
+          items:
+            $ref: '#/components/schemas/ComplianceDeadline'
+        overdue_items:
+          type: array
+          description: Compliance items that are past their due date.
+          items:
+            $ref: '#/components/schemas/ComplianceDeadline'
+        active_licenses_count:
+          type: integer
+          description: Total number of active business licenses.
+          minimum: 0
+        expiring_licenses_count:
+          type: integer
+          description: Number of licenses expiring within the next 90 days.
+          minimum: 0
+        registered_agent_states:
+          type: array
+          description: List of states where the entity has an active registered agent.
+          items:
+            type: string
+            pattern: ^[A-Z]{2}$
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when this status was generated.
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Page number for paginated results (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    entityIdParam:
+      name: entityId
+      in: path
+      required: true
+      description: Unique identifier for the business entity.
+      schema:
+        type: string
+    filingIdParam:
+      name: filingId
+      in: path
+      required: true
+      description: Unique identifier for the compliance filing.
+      schema:
+        type: string
+    perPageParam:
+      name: per_page
+      in: query
+      description: Number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating partner requests. Obtain your API key from the Harbor Compliance developer portal.
+externalDocs:
+  description: Harbor Compliance Developer Documentation
+  url: https://developers.harborcompliance.com/
