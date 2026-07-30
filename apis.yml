@@ -5,7 +5,20 @@ description: >-
   staff hours, and enhance client relationships. The platform provides tools for managing business licensing, registered
   agent services, and compliance tracking.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/harbor-compliance.png
 tags:
   - Business Licensing
   - Compliance
@@ -16,25 +29,99 @@ created: '2025-02-17'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: harbor-compliance:harbor-compliance-api
-    name: Harbor Compliance API
-    description: >-
-      The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms,
-      streamlining workflows for business licensing, registered agent services, and compliance tracking.
-    humanURL: https://developers.harborcompliance.com/
-    tags:
-      - Business Licensing
-      - Compliance
-    properties:
-      - type: Documentation
-        url: https://developers.harborcompliance.com/
-      - type: GettingStarted
-        url: https://developers.harborcompliance.com/docs/getting-started
-      - type: OpenAPI
-        url: openapi/harbor-compliance-openapi.yml
-      - type: JSONSchema
-        url: json-schema/harbor-compliance-entity-schema.json
+- aid: harbor-compliance:harbor-compliance-compliance-filings-api
+  name: Harbor Compliance Compliance Filings API
+  description: Annual reports, compliance filings, and deadline tracking.
+  humanURL: https://developers.harborcompliance.com/
+  tags:
+  - Compliance Filings
+  properties:
+  - type: OpenAPI
+    url: openapi/harbor-compliance-compliance-filings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.harborcompliance.com/
+  - type: GettingStarted
+    url: https://developers.harborcompliance.com/docs/getting-started
+  - type: JSONSchema
+    url: json-schema/harbor-compliance-entity-schema.json
+- aid: harbor-compliance:harbor-compliance-entities-api
+  name: Harbor Compliance Entities API
+  description: Business entity management including corporations, LLCs, and other legal entities.
+  humanURL: https://developers.harborcompliance.com/
+  tags:
+  - Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/harbor-compliance-entities-api-openapi.yml
+  - type: Documentation
+    url: https://developers.harborcompliance.com/
+  - type: GettingStarted
+    url: https://developers.harborcompliance.com/docs/getting-started
+  - type: JSONSchema
+    url: json-schema/harbor-compliance-entity-schema.json
+- aid: harbor-compliance:harbor-compliance-jurisdictions-api
+  name: Harbor Compliance Jurisdictions API
+  description: State and jurisdiction information for compliance requirements.
+  humanURL: https://developers.harborcompliance.com/
+  tags:
+  - Jurisdictions
+  properties:
+  - type: OpenAPI
+    url: openapi/harbor-compliance-jurisdictions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.harborcompliance.com/
+  - type: GettingStarted
+    url: https://developers.harborcompliance.com/docs/getting-started
+  - type: JSONSchema
+    url: json-schema/harbor-compliance-entity-schema.json
+- aid: harbor-compliance:harbor-compliance-licenses-api
+  name: Harbor Compliance Licenses API
+  description: Business license applications, renewals, and status tracking across jurisdictions.
+  humanURL: https://developers.harborcompliance.com/
+  tags:
+  - Licenses
+  properties:
+  - type: OpenAPI
+    url: openapi/harbor-compliance-licenses-api-openapi.yml
+  - type: Documentation
+    url: https://developers.harborcompliance.com/
+  - type: GettingStarted
+    url: https://developers.harborcompliance.com/docs/getting-started
+  - type: JSONSchema
+    url: json-schema/harbor-compliance-entity-schema.json
+- aid: harbor-compliance:harbor-compliance-orders-api
+  name: Harbor Compliance Orders API
+  description: Compliance service orders and fulfillment tracking.
+  humanURL: https://developers.harborcompliance.com/
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/harbor-compliance-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.harborcompliance.com/
+  - type: GettingStarted
+    url: https://developers.harborcompliance.com/docs/getting-started
+  - type: JSONSchema
+    url: json-schema/harbor-compliance-entity-schema.json
+- aid: harbor-compliance:harbor-compliance-registered-agents-api
+  name: Harbor Compliance Registered Agents API
+  description: Registered agent appointment and management for business entities.
+  humanURL: https://developers.harborcompliance.com/
+  tags:
+  - Registered Agents
+  properties:
+  - type: OpenAPI
+    url: openapi/harbor-compliance-registered-agents-api-openapi.yml
+  - type: Documentation
+    url: https://developers.harborcompliance.com/
+  - type: GettingStarted
+    url: https://developers.harborcompliance.com/docs/getting-started
+  - type: JSONSchema
+    url: json-schema/harbor-compliance-entity-schema.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/harbor-compliance/overview
   - type: AgenticAccess
     url: agentic-access/harbor-compliance-agentic-access.yml
   - type: DomainSecurity
