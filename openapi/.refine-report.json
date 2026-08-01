@@ -1,0 +1,24 @@
+{
+  "provider": "harbor-compliance",
+  "sources": [
+    "harbor-compliance-compliance-filings-api-openapi.yml",
+    "harbor-compliance-entities-api-openapi.yml",
+    "harbor-compliance-jurisdictions-api-openapi.yml",
+    "harbor-compliance-licenses-api-openapi.yml",
+    "harbor-compliance-orders-api-openapi.yml",
+    "harbor-compliance-registered-agents-api-openapi.yml"
+  ],
+  "outputs": [
+    "harbor-compliance-compliance-filings-api-openapi.yml",
+    "harbor-compliance-entities-api-openapi.yml",
+    "harbor-compliance-jurisdictions-api-openapi.yml",
+    "harbor-compliance-licenses-api-openapi.yml",
+    "harbor-compliance-orders-api-openapi.yml",
+    "harbor-compliance-registered-agents-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
