@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbor Compliance Compliance Filings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compliance Filings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Harbor Compliance Get compliance status for an entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.harborcompliance.com/v1/entities/:entityId/compliance",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the business entity."
+              }
+            ]
+          },
+          "docs": "Returns the full compliance status for a business entity including upcoming filing deadlines, overdue items, and a summary of active compliance requirements across all jurisdictions where the entity operates."
+        },
+        {
+          "info": {
+            "name": "Harbor Compliance List compliance filings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.harborcompliance.com/v1/filings",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (1-based)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              },
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter filings by entity identifier."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter filings by state jurisdiction."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by filing status."
+              },
+              {
+                "name": "due_before",
+                "value": "",
+                "type": "query",
+                "description": "Filter filings due before this date (ISO 8601 date)."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of compliance filings including annual reports, statements of information, and other required regulatory submissions. Results can be filtered by entity, state, filing type, and status."
+        },
+        {
+          "info": {
+            "name": "Harbor Compliance Get a compliance filing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.harborcompliance.com/v1/filings/:filingId",
+            "params": [
+              {
+                "name": "filingId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the compliance filing."
+              }
+            ]
+          },
+          "docs": "Retrieves details about a specific compliance filing including its type, due date, status, and any documents associated with the filing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

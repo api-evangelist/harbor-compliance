@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbor Compliance Compliance Filings Registered Agents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Registered Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Harbor Compliance List registered agent appointments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.harborcompliance.com/v1/registered-agents",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (1-based)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              },
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by entity identifier."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state jurisdiction."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of registered agent appointments for entities managed under the partner account. Includes appointment status and jurisdiction details."
+        },
+        {
+          "info": {
+            "name": "Harbor Compliance Appoint a registered agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.harborcompliance.com/v1/registered-agents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new registered agent appointment for a business entity in a specified state. Harbor Compliance will file the necessary paperwork with the state to formalize the appointment."
+        },
+        {
+          "info": {
+            "name": "Harbor Compliance Get a registered agent appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.harborcompliance.com/v1/registered-agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the registered agent appointment."
+              }
+            ]
+          },
+          "docs": "Retrieves details about a specific registered agent appointment including the agent's address, appointment status, and associated entity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

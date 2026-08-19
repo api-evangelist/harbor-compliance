@@ -1,0 +1,429 @@
+{
+  "item": [
+    {
+      "id": "8dcde7b7-5b98-4986-bd69-c5a8c28fb940",
+      "name": "Orders",
+      "description": {
+        "content": "Compliance service orders and fulfillment tracking.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0ba4fe51-3ab6-4e10-adc2-a2f1297e08cd",
+          "name": "Harbor Compliance List service orders",
+          "request": {
+            "name": "Harbor Compliance List service orders",
+            "description": {
+              "content": "Returns a paginated list of compliance service orders placed through the Harbor Compliance partner account. Orders represent discrete compliance tasks being fulfilled by Harbor Compliance staff.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (1-based)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<string>",
+                  "description": "Filter orders by entity identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by order status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0241c491-511f-46ee-9366-8fa3e8ff1805",
+              "name": "A paginated list of service orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"service_type\": \"annual_report_filing\",\n      \"status\": \"pending\",\n      \"description\": \"string\",\n      \"price\": 2705.339209714319,\n      \"reference_id\": \"string\",\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"https://ImqDqPeulxtFNbuqWQvfIPcWhdY.xblxKBkpYZzRWQe2m6M7APAVSaeDnK1hX0RD\",\n          \"created_at\": \"1946-08-28T16:18:29.972Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://ZuVUwpLHJDbiCZgZDXzBBJax.zceuJhtZ5Yo4bEd5LCts.1Y\",\n          \"created_at\": \"1978-02-02T22:07:41.537Z\"\n        }\n      ],\n      \"created_at\": \"1949-07-08T08:39:35.822Z\",\n      \"updated_at\": \"1951-10-03T11:46:10.674Z\",\n      \"completed_at\": \"1999-07-23T00:45:04.920Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"service_type\": \"foreign_qualification\",\n      \"status\": \"completed\",\n      \"description\": \"string\",\n      \"price\": 1320.065394880643,\n      \"reference_id\": \"string\",\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://HoljrlxAQGpWREkpGPNtjmslgb.hidHVQYID50BfLkcO,d-ZVbB-YYHNJVIaOnVisR3s88DNMWOs,E+b\",\n          \"created_at\": \"1977-09-15T14:10:13.150Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://mt.ympeek7dLTOA8srw1byTqLwHqLJuGQ5moEXItoVFWaXGHKTbS\",\n          \"created_at\": \"2006-03-05T10:15:14.905Z\"\n        }\n      ],\n      \"created_at\": \"1976-09-18T17:28:01.969Z\",\n      \"updated_at\": \"1993-05-01T20:55:40.547Z\",\n      \"completed_at\": \"1960-12-09T06:30:00.520Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 2886,\n    \"page\": 8440,\n    \"per_page\": 9025,\n    \"total_pages\": 1606\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b132ef6d-12b8-4bed-8109-235ec71c0986",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a334f2d-f934-40f3-81f4-538ac61a48c7",
+          "name": "Harbor Compliance Get a service order",
+          "request": {
+            "name": "Harbor Compliance Get a service order",
+            "description": {
+              "content": "Retrieves details about a specific compliance service order including its current status, associated entity, service type, and any documents produced.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) Unique identifier for the service order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a546206a-4fd1-4977-9bc9-2e37f92f930c",
+              "name": "Service order details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique identifier for the service order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"service_type\": \"dissolution\",\n  \"status\": \"pending\",\n  \"description\": \"string\",\n  \"price\": 930.0748782827139,\n  \"reference_id\": \"string\",\n  \"documents\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"url\": \"https://SDXaYMZRaaKYPcCrywZChenIIBN.egUje4xVrlzXRikDVGxnSdqXtwsYxNsENqWgBXOLUTlm0sLshoEeU-m8iqg\",\n      \"created_at\": \"2018-09-27T11:31:31.410Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"url\": \"https://IXODL.xhgho67ikmt,oMrSrrMTZaFvC7WsoBN\",\n      \"created_at\": \"2020-04-14T04:30:07.865Z\"\n    }\n  ],\n  \"created_at\": \"1997-02-24T08:14:24.533Z\",\n  \"updated_at\": \"2000-05-19T06:20:29.365Z\",\n  \"completed_at\": \"1979-08-14T09:21:14.258Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1202395b-cf59-4587-a855-800b6e960504",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique identifier for the service order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29dbc35a-756c-4d3c-a423-9631697a059c",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique identifier for the service order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.harborcompliance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f7da0475-eb38-4f9d-ad94-4c6643b3a92a",
+    "name": "Harbor Compliance Compliance Filings Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.\n\nContact Support:\n Name: Harbor Compliance Support",
+      "type": "text/plain"
+    }
+  }
+}

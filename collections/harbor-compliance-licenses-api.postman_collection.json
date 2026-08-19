@@ -1,0 +1,946 @@
+{
+  "item": [
+    {
+      "id": "38fe5115-8c84-4290-a198-28c60479b7d3",
+      "name": "Licenses",
+      "description": {
+        "content": "Business license applications, renewals, and status tracking across jurisdictions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "03880d06-06b7-4f5a-a752-6518dba81a03",
+          "name": "Harbor Compliance List business licenses",
+          "request": {
+            "name": "Harbor Compliance List business licenses",
+            "description": {
+              "content": "Returns a paginated list of business licenses managed for partner entities. Licenses can be filtered by entity, jurisdiction, license type, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (1-based)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<string>",
+                  "description": "Filter licenses by entity identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter licenses by state jurisdiction."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by license status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3da6779f-eaf5-4e06-ba42-18fb4858abf0",
+              "name": "A paginated list of business licenses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"JL\",\n      \"license_type\": \"string\",\n      \"status\": \"revoked\",\n      \"license_number\": \"string\",\n      \"issued_date\": \"2019-07-10\",\n      \"expiration_date\": \"1991-09-11\",\n      \"renewal_date\": \"1969-08-10\",\n      \"agency\": \"string\",\n      \"created_at\": \"2009-07-14T04:53:03.748Z\",\n      \"updated_at\": \"1973-01-27T11:38:28.871Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"SZ\",\n      \"license_type\": \"string\",\n      \"status\": \"revoked\",\n      \"license_number\": \"string\",\n      \"issued_date\": \"2003-06-10\",\n      \"expiration_date\": \"1998-09-07\",\n      \"renewal_date\": \"1975-07-28\",\n      \"agency\": \"string\",\n      \"created_at\": \"1994-01-02T02:42:04.382Z\",\n      \"updated_at\": \"1947-07-07T08:38:20.132Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 1829,\n    \"page\": 2049,\n    \"per_page\": 8174,\n    \"total_pages\": 4439\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4851bb5-445a-42ad-8d79-bb53833e9247",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3aebea09-efd5-448a-8696-1bc8e8427ada",
+          "name": "Harbor Compliance Create a license application",
+          "request": {
+            "name": "Harbor Compliance Create a license application",
+            "description": {
+              "content": "Submits a new business license application for a specified entity and jurisdiction. Harbor Compliance will process the application and update the status as it progresses through the licensing workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"license_type\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a26f76b-f006-44c6-bd62-a50231729ed7",
+              "name": "The newly created license application.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"license_type\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"OL\",\n  \"license_type\": \"string\",\n  \"status\": \"pending\",\n  \"license_number\": \"string\",\n  \"issued_date\": \"1958-04-04\",\n  \"expiration_date\": \"1951-02-12\",\n  \"renewal_date\": \"2008-01-22\",\n  \"agency\": \"string\",\n  \"created_at\": \"1990-10-13T23:35:01.827Z\",\n  \"updated_at\": \"1997-06-27T18:59:58.546Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b282dbf-385f-4091-9d72-e87bf2550ac5",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"license_type\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9aa215a4-40d6-4a90-91bf-c337e95dd54b",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"license_type\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56917b90-63c6-4788-91e9-2cfec6736030",
+          "name": "Harbor Compliance Get a business license",
+          "request": {
+            "name": "Harbor Compliance Get a business license",
+            "description": {
+              "content": "Retrieves detailed information about a specific business license including its current status, expiration date, renewal requirements, and associated filings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses",
+                ":licenseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "licenseId",
+                  "description": "(Required) Unique identifier for the business license."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6582d43d-1bbf-4f7b-98a5-cee9c38f675a",
+              "name": "Business license details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"OL\",\n  \"license_type\": \"string\",\n  \"status\": \"pending\",\n  \"license_number\": \"string\",\n  \"issued_date\": \"1958-04-04\",\n  \"expiration_date\": \"1951-02-12\",\n  \"renewal_date\": \"2008-01-22\",\n  \"agency\": \"string\",\n  \"created_at\": \"1990-10-13T23:35:01.827Z\",\n  \"updated_at\": \"1997-06-27T18:59:58.546Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d678074-982e-412a-bf1f-9e56283a3a31",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c12b4a1-6b54-444d-b23a-bdbeddd07540",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b5489ac-c97d-47d1-82aa-98434d90c423",
+          "name": "Harbor Compliance Renew a business license",
+          "request": {
+            "name": "Harbor Compliance Renew a business license",
+            "description": {
+              "content": "Initiates the renewal process for an existing business license. This creates a renewal order that Harbor Compliance will process through the appropriate jurisdiction's renewal workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "licenses",
+                ":licenseId",
+                "renew"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "licenseId",
+                  "description": "(Required) Unique identifier for the business license."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a9fb5d4-b009-4acc-bed1-86d7ea9a3dc8",
+              "name": "The updated license record with renewal initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId",
+                    "renew"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"OL\",\n  \"license_type\": \"string\",\n  \"status\": \"pending\",\n  \"license_number\": \"string\",\n  \"issued_date\": \"1958-04-04\",\n  \"expiration_date\": \"1951-02-12\",\n  \"renewal_date\": \"2008-01-22\",\n  \"agency\": \"string\",\n  \"created_at\": \"1990-10-13T23:35:01.827Z\",\n  \"updated_at\": \"1997-06-27T18:59:58.546Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13505e9b-f0a9-4701-8e22-69a6c318a2e7",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId",
+                    "renew"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ce5add7-4101-4786-80a9-393edf7926c4",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId",
+                    "renew"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d2273d5-f2d1-4b56-9372-154c1566d541",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "licenses",
+                    ":licenseId",
+                    "renew"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) Unique identifier for the business license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.harborcompliance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e906ebd3-ffc6-417a-92c1-a2a827083f9b",
+    "name": "Harbor Compliance Compliance Filings Licenses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.\n\nContact Support:\n Name: Harbor Compliance Support",
+      "type": "text/plain"
+    }
+  }
+}

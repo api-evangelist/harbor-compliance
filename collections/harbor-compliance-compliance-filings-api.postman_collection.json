@@ -1,0 +1,661 @@
+{
+  "item": [
+    {
+      "id": "b20d4e26-8ca9-46b7-85f4-c7caa262e845",
+      "name": "Compliance Filings",
+      "description": {
+        "content": "Annual reports, compliance filings, and deadline tracking.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "29ce9ab5-f685-4849-9998-5d5ae956582e",
+          "name": "Harbor Compliance Get compliance status for an entity",
+          "request": {
+            "name": "Harbor Compliance Get compliance status for an entity",
+            "description": {
+              "content": "Returns the full compliance status for a business entity including upcoming filing deadlines, overdue items, and a summary of active compliance requirements across all jurisdictions where the entity operates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                ":entityId",
+                "compliance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityId",
+                  "description": "(Required) Unique identifier for the business entity."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b131dda1-ed56-4a6d-aad1-358ab06aab9e",
+              "name": "Entity compliance status summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId",
+                    "compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entity_id\": \"string\",\n  \"overall_status\": \"non_compliant\",\n  \"upcoming_deadlines\": [\n    {\n      \"type\": \"license_renewal\",\n      \"state\": \"JR\",\n      \"due_date\": \"1954-01-30\",\n      \"status\": \"in_progress\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    },\n    {\n      \"type\": \"license_renewal\",\n      \"state\": \"LA\",\n      \"due_date\": \"1961-06-07\",\n      \"status\": \"in_progress\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    }\n  ],\n  \"overdue_items\": [\n    {\n      \"type\": \"other\",\n      \"state\": \"OT\",\n      \"due_date\": \"2020-10-17\",\n      \"status\": \"pending\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    },\n    {\n      \"type\": \"registered_agent\",\n      \"state\": \"QM\",\n      \"due_date\": \"1962-08-06\",\n      \"status\": \"overdue\",\n      \"description\": \"string\",\n      \"filing_id\": \"string\",\n      \"license_id\": \"string\"\n    }\n  ],\n  \"active_licenses_count\": 5187,\n  \"expiring_licenses_count\": 9018,\n  \"registered_agent_states\": [\n    \"DN\",\n    \"LY\"\n  ],\n  \"generated_at\": \"2024-11-05T17:42:34.272Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2cf44bf-17f8-48bc-a474-fdc4e5a63a63",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId",
+                    "compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8716a5c4-2510-4d6f-8582-95d49c8279d0",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":entityId",
+                    "compliance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Unique identifier for the business entity."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ab9b740-0382-42c9-8809-7aee9171e8e3",
+          "name": "Harbor Compliance List compliance filings",
+          "request": {
+            "name": "Harbor Compliance List compliance filings",
+            "description": {
+              "content": "Returns a paginated list of compliance filings including annual reports, statements of information, and other required regulatory submissions. Results can be filtered by entity, state, filing type, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (1-based)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<string>",
+                  "description": "Filter filings by entity identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter filings by state jurisdiction."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by filing status."
+                },
+                {
+                  "disabled": false,
+                  "key": "due_before",
+                  "value": "<date>",
+                  "description": "Filter filings due before this date (ISO 8601 date)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71792706-61b5-40af-b5f9-da7b556c1229",
+              "name": "A paginated list of compliance filings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "due_before",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"KQ\",\n      \"filing_type\": \"franchise_tax\",\n      \"status\": \"filed\",\n      \"due_date\": \"1960-03-20\",\n      \"filed_date\": \"1964-07-08\",\n      \"fee\": 4552.7719188539295,\n      \"filing_period\": \"string\",\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://ipmdfbCXuwgvm.vsjr1lpYyqKa7d\",\n          \"created_at\": \"2025-06-26T07:00:59.539Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://loBGJrkIQmnLDlHHRvzvCyRUTe.ekwTgEYE-DyTNaYEVlK8nsduldPy-u.AhOIizhgBXejJ1sChhrs8xl\",\n          \"created_at\": \"1977-05-02T06:16:28.275Z\"\n        }\n      ],\n      \"created_at\": \"2009-02-19T02:17:25.642Z\",\n      \"updated_at\": \"2014-12-10T11:32:34.142Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"VE\",\n      \"filing_type\": \"beneficial_ownership\",\n      \"status\": \"waived\",\n      \"due_date\": \"1947-05-17\",\n      \"filed_date\": \"1971-12-23\",\n      \"fee\": 8043.251218242399,\n      \"filing_period\": \"string\",\n      \"documents\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"http://EOkK.pkjTgoj,biP3AmLDmlQPXLJjSax8hkyUnUQUpnbUrTU3kZJAjSR8S7QYz\",\n          \"created_at\": \"1985-07-28T04:36:38.032Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"url\": \"https://HXjhffExotqAPHdoZfJIYdthBkmnVit.zxdygXFbjXQTQ3zn09pwKu6zLX-2nO6FnQ-UID2JvNmdBcEEFJzFhncIuccfIC8S4fHADb\",\n          \"created_at\": \"1984-03-09T14:11:36.344Z\"\n        }\n      ],\n      \"created_at\": \"1956-05-07T23:02:04.227Z\",\n      \"updated_at\": \"2019-02-14T15:49:36.275Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 7336,\n    \"page\": 5714,\n    \"per_page\": 3805,\n    \"total_pages\": 3344\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d61043a7-66f9-485f-9f2d-d3049387cf41",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "due_before",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdcd67c2-ba22-4d92-9d3d-1b51a9db1d6e",
+          "name": "Harbor Compliance Get a compliance filing",
+          "request": {
+            "name": "Harbor Compliance Get a compliance filing",
+            "description": {
+              "content": "Retrieves details about a specific compliance filing including its type, due date, status, and any documents associated with the filing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filings",
+                ":filingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "filingId",
+                  "description": "(Required) Unique identifier for the compliance filing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8c0a907-5a02-4ac8-8ef3-ca4695192982",
+              "name": "Compliance filing details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings",
+                    ":filingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filingId",
+                      "description": "(Required) Unique identifier for the compliance filing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"BU\",\n  \"filing_type\": \"franchise_tax\",\n  \"status\": \"pending\",\n  \"due_date\": \"1973-07-27\",\n  \"filed_date\": \"1979-02-22\",\n  \"fee\": 8336.53874154338,\n  \"filing_period\": \"string\",\n  \"documents\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"url\": \"http://RdmxFeJBXNDoEYNHrhiW.iyeab8iZ2+OXl3kquPZhW+M.NDWiLOuYDdfj\",\n      \"created_at\": \"1962-01-19T10:43:51.854Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"url\": \"https://QSoCXWAxzXYfzznOSrdmPtoagUlm.pdli8z-tLP3OjZvklYfiEArYiWTg7BAqVPuuGhamZ\",\n      \"created_at\": \"1978-02-03T12:25:52.885Z\"\n    }\n  ],\n  \"created_at\": \"1950-02-18T00:54:44.523Z\",\n  \"updated_at\": \"1950-01-22T20:20:23.800Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78d55822-917c-4a26-98c8-3ab5444a8f66",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings",
+                    ":filingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filingId",
+                      "description": "(Required) Unique identifier for the compliance filing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67dcefc7-0fd8-4eab-a8e9-d183cc064e50",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filings",
+                    ":filingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filingId",
+                      "description": "(Required) Unique identifier for the compliance filing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.harborcompliance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c9900de9-c4df-4c74-8d4d-1464ea4b2d89",
+    "name": "Harbor Compliance Compliance Filings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.\n\nContact Support:\n Name: Harbor Compliance Support",
+      "type": "text/plain"
+    }
+  }
+}

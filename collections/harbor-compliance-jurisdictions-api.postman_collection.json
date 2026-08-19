@@ -1,0 +1,387 @@
+{
+  "item": [
+    {
+      "id": "f76590b4-2875-44d4-a7e7-ad1e40dc9af7",
+      "name": "Jurisdictions",
+      "description": {
+        "content": "State and jurisdiction information for compliance requirements.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd8306b3-986c-4ece-ac3c-dd5be0babdef",
+          "name": "Harbor Compliance List jurisdictions",
+          "request": {
+            "name": "Harbor Compliance List jurisdictions",
+            "description": {
+              "content": "Returns a list of all supported jurisdictions with their compliance requirements, filing fees, and annual report due dates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jurisdictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entity_type",
+                  "value": "<string>",
+                  "description": "Filter jurisdictions by supported entity type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f6188a1-4f70-4630-b39e-4b0ba46af51f",
+              "name": "A list of supported jurisdictions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"state\": \"PN\",\n      \"name\": \"string\",\n      \"annual_report_due\": \"string\",\n      \"registered_agent_required\": false,\n      \"supported_entity_types\": [\n        \"nonprofit\",\n        \"nonprofit\"\n      ],\n      \"filing_fees\": {\n        \"key_0\": 7956.778294194249,\n        \"key_1\": 6685.4280592994955\n      }\n    },\n    {\n      \"state\": \"ZX\",\n      \"name\": \"string\",\n      \"annual_report_due\": \"string\",\n      \"registered_agent_required\": true,\n      \"supported_entity_types\": [\n        \"lp\",\n        \"llc\"\n      ],\n      \"filing_fees\": {\n        \"key_0\": 2989.731210805855,\n        \"key_1\": 3237.6197179842316,\n        \"key_2\": 7926.56719238404\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37dc7349-e477-45d8-b385-d35098eee8f7",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a935383-6392-43d3-bdae-20c38b4fdb7a",
+          "name": "Harbor Compliance Get jurisdiction details",
+          "request": {
+            "name": "Harbor Compliance Get jurisdiction details",
+            "description": {
+              "content": "Retrieves detailed compliance requirements for a specific state jurisdiction including annual report deadlines, filing fees, and registered agent requirements by entity type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jurisdictions",
+                ":state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "state",
+                  "description": "(Required) Two-letter state code (e.g., CA, NY, DE)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac1f190a-4fd0-4e06-9e67-5840945596d2",
+              "name": "Jurisdiction compliance details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions",
+                    ":state"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "state",
+                      "description": "(Required) Two-letter state code (e.g., CA, NY, DE)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"state\": \"XR\",\n  \"name\": \"string\",\n  \"annual_report_due\": \"string\",\n  \"registered_agent_required\": false,\n  \"supported_entity_types\": [\n    \"corporation\",\n    \"llp\"\n  ],\n  \"filing_fees\": {\n    \"key_0\": 8104.892036673539,\n    \"key_1\": 687.0457452264311\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47443dee-2c30-4984-b53a-52e2f8a2b0eb",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions",
+                    ":state"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "state",
+                      "description": "(Required) Two-letter state code (e.g., CA, NY, DE)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f81b4aba-69f1-469f-a70e-c30a5eba6725",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jurisdictions",
+                    ":state"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "state",
+                      "description": "(Required) Two-letter state code (e.g., CA, NY, DE)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.harborcompliance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b674884e-ddf0-4eac-b813-bfe70f35cab4",
+    "name": "Harbor Compliance Compliance Filings Jurisdictions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.\n\nContact Support:\n Name: Harbor Compliance Support",
+      "type": "text/plain"
+    }
+  }
+}

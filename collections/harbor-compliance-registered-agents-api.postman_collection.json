@@ -1,0 +1,630 @@
+{
+  "item": [
+    {
+      "id": "77871615-3948-40fd-8fff-33407df4f212",
+      "name": "Registered Agents",
+      "description": {
+        "content": "Registered agent appointment and management for business entities.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89cb3bf6-9c9f-4bdc-8f00-b7c66c7c1554",
+          "name": "Harbor Compliance List registered agent appointments",
+          "request": {
+            "name": "Harbor Compliance List registered agent appointments",
+            "description": {
+              "content": "Returns a paginated list of registered agent appointments for entities managed under the partner account. Includes appointment status and jurisdiction details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registered-agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (1-based)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<string>",
+                  "description": "Filter by entity identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by state jurisdiction."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6a9eb9a-b465-4b4c-8ceb-d63b4383bca2",
+              "name": "A paginated list of registered agent appointments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"RI\",\n      \"status\": \"pending\",\n      \"agent_name\": \"string\",\n      \"agent_address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"WY\",\n        \"zip\": \"01519\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      },\n      \"appointment_date\": \"1969-10-22\",\n      \"created_at\": \"1978-05-06T23:56:11.720Z\",\n      \"updated_at\": \"1949-08-26T18:58:34.747Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"entity_id\": \"string\",\n      \"state\": \"JJ\",\n      \"status\": \"pending\",\n      \"agent_name\": \"string\",\n      \"agent_address\": {\n        \"street1\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"TM\",\n        \"zip\": \"68582\",\n        \"street2\": \"string\",\n        \"country\": \"US\"\n      },\n      \"appointment_date\": \"1981-09-11\",\n      \"created_at\": \"1962-09-05T15:24:12.018Z\",\n      \"updated_at\": \"2004-03-19T18:31:27.934Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 9888,\n    \"page\": 1203,\n    \"per_page\": 1821,\n    \"total_pages\": 1836\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e990c9a-8bfa-4344-bb40-6b2a7549ab3e",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1036c6dd-1995-4762-bf01-67782be526d7",
+          "name": "Harbor Compliance Appoint a registered agent",
+          "request": {
+            "name": "Harbor Compliance Appoint a registered agent",
+            "description": {
+              "content": "Creates a new registered agent appointment for a business entity in a specified state. Harbor Compliance will file the necessary paperwork with the state to formalize the appointment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registered-agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "920601e2-2c04-4a9a-aa0b-2e68d3130a6b",
+              "name": "The newly created registered agent appointment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"FW\",\n  \"status\": \"revoked\",\n  \"agent_name\": \"string\",\n  \"agent_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"DS\",\n    \"zip\": \"63289\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"appointment_date\": \"2004-10-20\",\n  \"created_at\": \"1966-10-05T18:46:30.671Z\",\n  \"updated_at\": \"1976-04-06T12:12:47.734Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06ad2812-d3e7-4c4c-8903-b00702fb3c79",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39d0c132-04a2-4684-a611-5fc5371410a1",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e502cafb-1d72-4eda-acc3-e3df8c19a642",
+          "name": "Harbor Compliance Get a registered agent appointment",
+          "request": {
+            "name": "Harbor Compliance Get a registered agent appointment",
+            "description": {
+              "content": "Retrieves details about a specific registered agent appointment including the agent's address, appointment status, and associated entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registered-agents",
+                ":agentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentId",
+                  "description": "(Required) Unique identifier for the registered agent appointment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0a30f75-cbcd-4f9d-8d0c-ea272275faf6",
+              "name": "Registered agent appointment details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents",
+                    ":agentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentId",
+                      "description": "(Required) Unique identifier for the registered agent appointment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entity_id\": \"string\",\n  \"state\": \"FW\",\n  \"status\": \"revoked\",\n  \"agent_name\": \"string\",\n  \"agent_address\": {\n    \"street1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"DS\",\n    \"zip\": \"63289\",\n    \"street2\": \"string\",\n    \"country\": \"US\"\n  },\n  \"appointment_date\": \"2004-10-20\",\n  \"created_at\": \"1966-10-05T18:46:30.671Z\",\n  \"updated_at\": \"1976-04-06T12:12:47.734Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2ac950e-ea13-4c7a-b367-26473711a884",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents",
+                    ":agentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentId",
+                      "description": "(Required) Unique identifier for the registered agent appointment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0906b504-d502-4f79-93f5-842564349b3d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registered-agents",
+                    ":agentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentId",
+                      "description": "(Required) Unique identifier for the registered agent appointment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.harborcompliance.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6ea19bf1-c19d-451e-89e1-ec581e35b6a2",
+    "name": "Harbor Compliance Compliance Filings Registered Agents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.\n\nContact Support:\n Name: Harbor Compliance Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbor Compliance Compliance Filings Jurisdictions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jurisdictions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Harbor Compliance List jurisdictions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.harborcompliance.com/v1/jurisdictions",
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter jurisdictions by supported entity type."
+              }
+            ]
+          },
+          "docs": "Returns a list of all supported jurisdictions with their compliance requirements, filing fees, and annual report due dates."
+        },
+        {
+          "info": {
+            "name": "Harbor Compliance Get jurisdiction details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.harborcompliance.com/v1/jurisdictions/:state",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "path",
+                "description": "Two-letter state code (e.g., CA, NY, DE)."
+              }
+            ]
+          },
+          "docs": "Retrieves detailed compliance requirements for a specific state jurisdiction including annual report deadlines, filing fees, and registered agent requirements by entity type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
