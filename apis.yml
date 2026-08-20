@@ -94,6 +94,8 @@ apis:
   description: Compliance service orders and fulfillment tracking.
   humanURL: https://developers.harborcompliance.com/
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
