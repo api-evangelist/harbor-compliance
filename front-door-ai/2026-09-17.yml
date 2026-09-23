@@ -1,0 +1,27 @@
+# Front Door AI Index — harbor-compliance — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: harbor-compliance
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.harborcompliance.com
+  final_host: www.harborcompliance.com
+  ownership: own
+  owner: harbor-compliance
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 2
+  host_score: 2
+  density: 0.72
+  words: 2764
+  tiers:
+    agentic: 0
+    core: 2
+    model: 0
+  ambiguous: 36
+  top_terms:
+    agent: 34
+    AI: 2
+    intelligence: 2

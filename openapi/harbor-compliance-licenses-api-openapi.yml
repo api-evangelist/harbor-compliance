@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Harbor Compliance Compliance Filings Licenses API
+  title: Harbor Compliance Licenses API
   description: The Harbor Compliance API enables partners to integrate compliance management capabilities into their platforms. The API provides programmatic access to business licensing, registered agent services, compliance tracking, and entity management workflows. Partners can automate compliance tasks, monitor filing deadlines, manage registered agent appointments, and track licensing requirements across jurisdictions.
   version: '1.0'
   contact:
@@ -139,38 +139,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    licenseIdParam:
-      name: licenseId
-      in: path
-      required: true
-      description: Unique identifier for the business license.
-      schema:
-        type: string
-    pageParam:
-      name: page
-      in: query
-      description: Page number for paginated results (1-based).
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    perPageParam:
-      name: per_page
-      in: query
-      description: Number of results per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
   responses:
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication credentials are missing or invalid.
       content:
@@ -179,6 +148,12 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
       content:
         application/json:
           schema:
@@ -206,23 +181,6 @@ components:
         notes:
           type: string
           description: Additional notes or instructions for the license application.
-    PaginationMeta:
-      type: object
-      title: PaginationMeta
-      description: Pagination metadata included with list responses.
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query.
-        page:
-          type: integer
-          description: Current page number.
-        per_page:
-          type: integer
-          description: Number of records per page.
-        total_pages:
-          type: integer
-          description: Total number of pages available.
     License:
       type: object
       title: License
@@ -307,6 +265,48 @@ components:
               message:
                 type: string
                 description: Description of the field-level error.
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Page number for paginated results (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    perPageParam:
+      name: per_page
+      in: query
+      description: Number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    licenseIdParam:
+      name: licenseId
+      in: path
+      required: true
+      description: Unique identifier for the business license.
+      schema:
+        type: string
   securitySchemes:
     apiKey:
       type: apiKey

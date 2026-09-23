@@ -1,12 +1,7 @@
 {
   "provider": "harbor-compliance",
   "sources": [
-    "harbor-compliance-compliance-filings-api-openapi.yml",
-    "harbor-compliance-entities-api-openapi.yml",
-    "harbor-compliance-jurisdictions-api-openapi.yml",
-    "harbor-compliance-licenses-api-openapi.yml",
-    "harbor-compliance-orders-api-openapi.yml",
-    "harbor-compliance-registered-agents-api-openapi.yml"
+    "_original/harbor-compliance-openapi.yml"
   ],
   "outputs": [
     "harbor-compliance-compliance-filings-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "harbor-compliance-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "harbor-compliance-compliance-filings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "harbor-compliance-entities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "harbor-compliance-jurisdictions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "harbor-compliance-licenses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "harbor-compliance-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "harbor-compliance-registered-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
