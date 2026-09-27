@@ -111,52 +111,102 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    perPageParam:
-      name: per_page
-      in: query
-      description: Number of results per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    pageParam:
-      name: page
-      in: query
-      description: Page number for paginated results (1-based).
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    entityIdParam:
-      name: entityId
-      in: path
-      required: true
-      description: Unique identifier for the business entity.
-      schema:
-        type: string
-    filingIdParam:
-      name: filingId
-      in: path
-      required: true
-      description: Unique identifier for the compliance filing.
-      schema:
-        type: string
   schemas:
+    Document:
+      type: object
+      title: Document
+      description: A document associated with a filing or order.
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the document.
+        name:
+          type: string
+          description: Display name of the document.
+        type:
+          type: string
+          description: Document type (e.g., filed_report, confirmation, receipt).
+        url:
+          type: string
+          format: uri
+          description: URL to download or view the document.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the document was created.
+    Error:
+      type: object
+      title: Error
+      description: Error response returned when a request fails.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+        details:
+          type: array
+          description: Additional details about specific validation errors.
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: The field that caused the error.
+              message:
+                type: string
+                description: Description of the field-level error.
+    ComplianceDeadline:
+      type: object
+      title: ComplianceDeadline
+      description: A single upcoming or overdue compliance deadline.
+      required:
+      - type
+      - state
+      - due_date
+      - status
+      properties:
+        type:
+          type: string
+          description: Type of compliance requirement.
+          enum:
+          - annual_report
+          - biennial_report
+          - license_renewal
+          - registered_agent
+          - franchise_tax
+          - other
+        state:
+          type: string
+          description: Two-letter state code for the jurisdiction.
+          pattern: ^[A-Z]{2}$
+        due_date:
+          type: string
+          format: date
+          description: Date the compliance item is due.
+        status:
+          type: string
+          description: Current status of the compliance item.
+          enum:
+          - pending
+          - in_progress
+          - overdue
+        description:
+          type: string
+          description: Human-readable description of the compliance requirement.
+        filing_id:
+          type: string
+          description: Reference to the associated filing record, if applicable.
+        license_id:
+          type: string
+          description: Reference to the associated license record, if applicable.
     Filing:
       type: object
       title: Filing
@@ -224,118 +274,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last update.
-    Error:
-      type: object
-      title: Error
-      description: Error response returned when a request fails.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
-        details:
-          type: array
-          description: Additional details about specific validation errors.
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: The field that caused the error.
-              message:
-                type: string
-                description: Description of the field-level error.
-    Document:
-      type: object
-      title: Document
-      description: A document associated with a filing or order.
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the document.
-        name:
-          type: string
-          description: Display name of the document.
-        type:
-          type: string
-          description: Document type (e.g., filed_report, confirmation, receipt).
-        url:
-          type: string
-          format: uri
-          description: URL to download or view the document.
-        created_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the document was created.
-    PaginationMeta:
-      type: object
-      title: PaginationMeta
-      description: Pagination metadata included with list responses.
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query.
-        page:
-          type: integer
-          description: Current page number.
-        per_page:
-          type: integer
-          description: Number of records per page.
-        total_pages:
-          type: integer
-          description: Total number of pages available.
-    ComplianceDeadline:
-      type: object
-      title: ComplianceDeadline
-      description: A single upcoming or overdue compliance deadline.
-      required:
-      - type
-      - state
-      - due_date
-      - status
-      properties:
-        type:
-          type: string
-          description: Type of compliance requirement.
-          enum:
-          - annual_report
-          - biennial_report
-          - license_renewal
-          - registered_agent
-          - franchise_tax
-          - other
-        state:
-          type: string
-          description: Two-letter state code for the jurisdiction.
-          pattern: ^[A-Z]{2}$
-        due_date:
-          type: string
-          format: date
-          description: Date the compliance item is due.
-        status:
-          type: string
-          description: Current status of the compliance item.
-          enum:
-          - pending
-          - in_progress
-          - overdue
-        description:
-          type: string
-          description: Human-readable description of the compliance requirement.
-        filing_id:
-          type: string
-          description: Reference to the associated filing record, if applicable.
-        license_id:
-          type: string
-          description: Reference to the associated license record, if applicable.
     ComplianceStatus:
       type: object
       title: ComplianceStatus
@@ -382,6 +320,68 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when this status was generated.
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    filingIdParam:
+      name: filingId
+      in: path
+      required: true
+      description: Unique identifier for the compliance filing.
+      schema:
+        type: string
+    perPageParam:
+      name: per_page
+      in: query
+      description: Number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    entityIdParam:
+      name: entityId
+      in: path
+      required: true
+      description: Unique identifier for the business entity.
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Page number for paginated results (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     apiKey:
       type: apiKey

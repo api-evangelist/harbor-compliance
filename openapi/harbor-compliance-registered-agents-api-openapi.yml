@@ -98,6 +98,12 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication credentials are missing or invalid.
       content:
@@ -110,38 +116,51 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    pageParam:
-      name: page
-      in: query
-      description: Page number for paginated results (1-based).
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    perPageParam:
-      name: per_page
-      in: query
-      description: Number of results per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    agentIdParam:
-      name: agentId
-      in: path
-      required: true
-      description: Unique identifier for the registered agent appointment.
-      schema:
-        type: string
   schemas:
+    RegisteredAgentCreate:
+      type: object
+      title: RegisteredAgentCreate
+      description: Fields required to create a registered agent appointment.
+      required:
+      - entity_id
+      - state
+      properties:
+        entity_id:
+          type: string
+          description: Identifier of the entity requiring a registered agent.
+        state:
+          type: string
+          description: Two-letter state code where the agent should be appointed.
+          pattern: ^[A-Z]{2}$
+        notes:
+          type: string
+          description: Optional notes for the registered agent appointment request.
+    Error:
+      type: object
+      title: Error
+      description: Error response returned when a request fails.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+        details:
+          type: array
+          description: Additional details about specific validation errors.
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: The field that caused the error.
+              message:
+                type: string
+                description: Description of the field-level error.
     RegisteredAgent:
       type: object
       title: RegisteredAgent
@@ -187,67 +206,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last update.
-    RegisteredAgentCreate:
-      type: object
-      title: RegisteredAgentCreate
-      description: Fields required to create a registered agent appointment.
-      required:
-      - entity_id
-      - state
-      properties:
-        entity_id:
-          type: string
-          description: Identifier of the entity requiring a registered agent.
-        state:
-          type: string
-          description: Two-letter state code where the agent should be appointed.
-          pattern: ^[A-Z]{2}$
-        notes:
-          type: string
-          description: Optional notes for the registered agent appointment request.
-    Error:
-      type: object
-      title: Error
-      description: Error response returned when a request fails.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
-        details:
-          type: array
-          description: Additional details about specific validation errors.
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: The field that caused the error.
-              message:
-                type: string
-                description: Description of the field-level error.
-    PaginationMeta:
-      type: object
-      title: PaginationMeta
-      description: Pagination metadata included with list responses.
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query.
-        page:
-          type: integer
-          description: Current page number.
-        per_page:
-          type: integer
-          description: Number of records per page.
-        total_pages:
-          type: integer
-          description: Total number of pages available.
     Address:
       type: object
       title: Address
@@ -279,6 +237,48 @@ components:
           type: string
           description: ISO 3166-1 alpha-2 country code.
           default: US
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+  parameters:
+    agentIdParam:
+      name: agentId
+      in: path
+      required: true
+      description: Unique identifier for the registered agent appointment.
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Page number for paginated results (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    perPageParam:
+      name: per_page
+      in: query
+      description: Number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
   securitySchemes:
     apiKey:
       type: apiKey
