@@ -78,7 +78,37 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
     Document:
       type: object
       title: Document
@@ -192,36 +222,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the order was completed, if applicable.
-    PaginationMeta:
-      type: object
-      title: PaginationMeta
-      description: Pagination metadata included with list responses.
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query.
-        page:
-          type: integer
-          description: Current page number.
-        per_page:
-          type: integer
-          description: Number of records per page.
-        total_pages:
-          type: integer
-          description: Total number of pages available.
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     pageParam:
       name: page
@@ -231,6 +231,13 @@ components:
         type: integer
         minimum: 1
         default: 1
+    orderIdParam:
+      name: orderId
+      in: path
+      required: true
+      description: Unique identifier for the service order.
+      schema:
+        type: string
     perPageParam:
       name: per_page
       in: query
@@ -240,13 +247,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    orderIdParam:
-      name: orderId
-      in: path
-      required: true
-      description: Unique identifier for the service order.
-      schema:
-        type: string
   securitySchemes:
     apiKey:
       type: apiKey

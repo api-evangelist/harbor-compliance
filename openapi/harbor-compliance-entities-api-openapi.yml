@@ -248,32 +248,70 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last update to the entity record.
-    Error:
+    PaginationMeta:
       type: object
-      title: Error
-      description: Error response returned when a request fails.
-      required:
-      - code
-      - message
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
       properties:
-        code:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+    Officer:
+      type: object
+      title: Officer
+      description: An officer, director, or member of a business entity.
+      required:
+      - name
+      - title
+      properties:
+        name:
           type: string
-          description: Machine-readable error code.
-        message:
+          description: Full legal name of the officer.
+        title:
           type: string
-          description: Human-readable description of the error.
-        details:
-          type: array
-          description: Additional details about specific validation errors.
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: The field that caused the error.
-              message:
-                type: string
-                description: Description of the field-level error.
+          description: Title or role of the officer (e.g., President, Secretary, Manager).
+        address:
+          $ref: '#/components/schemas/Address'
+    Address:
+      type: object
+      title: Address
+      description: A postal address.
+      required:
+      - street1
+      - city
+      - state
+      - zip
+      properties:
+        street1:
+          type: string
+          description: Primary street address line.
+        street2:
+          type: string
+          description: Secondary street address line (suite, unit, etc.).
+        city:
+          type: string
+          description: City name.
+        state:
+          type: string
+          description: Two-letter state code.
+          pattern: ^[A-Z]{2}$
+        zip:
+          type: string
+          description: ZIP or postal code.
+          pattern: ^\d{5}(-\d{4})?$
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          default: US
     EntityCreate:
       type: object
       title: EntityCreate
@@ -313,6 +351,93 @@ components:
         officers:
           type: array
           description: Officers and directors associated with the entity.
+          items:
+            $ref: '#/components/schemas/Officer'
+    ComplianceDeadline:
+      type: object
+      title: ComplianceDeadline
+      description: A single upcoming or overdue compliance deadline.
+      required:
+      - type
+      - state
+      - due_date
+      - status
+      properties:
+        type:
+          type: string
+          description: Type of compliance requirement.
+          enum:
+          - annual_report
+          - biennial_report
+          - license_renewal
+          - registered_agent
+          - franchise_tax
+          - other
+        state:
+          type: string
+          description: Two-letter state code for the jurisdiction.
+          pattern: ^[A-Z]{2}$
+        due_date:
+          type: string
+          format: date
+          description: Date the compliance item is due.
+        status:
+          type: string
+          description: Current status of the compliance item.
+          enum:
+          - pending
+          - in_progress
+          - overdue
+        description:
+          type: string
+          description: Human-readable description of the compliance requirement.
+        filing_id:
+          type: string
+          description: Reference to the associated filing record, if applicable.
+        license_id:
+          type: string
+          description: Reference to the associated license record, if applicable.
+    Error:
+      type: object
+      title: Error
+      description: Error response returned when a request fails.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+        details:
+          type: array
+          description: Additional details about specific validation errors.
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: The field that caused the error.
+              message:
+                type: string
+                description: Description of the field-level error.
+    EntityUpdate:
+      type: object
+      title: EntityUpdate
+      description: Fields that can be updated on an existing business entity.
+      properties:
+        name:
+          type: string
+          description: Updated legal name of the entity.
+        principal_address:
+          $ref: '#/components/schemas/Address'
+        mailing_address:
+          $ref: '#/components/schemas/Address'
+        officers:
+          type: array
+          description: Updated list of officers and directors.
           items:
             $ref: '#/components/schemas/Officer'
     ComplianceStatus:
@@ -361,139 +486,7 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when this status was generated.
-    Address:
-      type: object
-      title: Address
-      description: A postal address.
-      required:
-      - street1
-      - city
-      - state
-      - zip
-      properties:
-        street1:
-          type: string
-          description: Primary street address line.
-        street2:
-          type: string
-          description: Secondary street address line (suite, unit, etc.).
-        city:
-          type: string
-          description: City name.
-        state:
-          type: string
-          description: Two-letter state code.
-          pattern: ^[A-Z]{2}$
-        zip:
-          type: string
-          description: ZIP or postal code.
-          pattern: ^\d{5}(-\d{4})?$
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          default: US
-    ComplianceDeadline:
-      type: object
-      title: ComplianceDeadline
-      description: A single upcoming or overdue compliance deadline.
-      required:
-      - type
-      - state
-      - due_date
-      - status
-      properties:
-        type:
-          type: string
-          description: Type of compliance requirement.
-          enum:
-          - annual_report
-          - biennial_report
-          - license_renewal
-          - registered_agent
-          - franchise_tax
-          - other
-        state:
-          type: string
-          description: Two-letter state code for the jurisdiction.
-          pattern: ^[A-Z]{2}$
-        due_date:
-          type: string
-          format: date
-          description: Date the compliance item is due.
-        status:
-          type: string
-          description: Current status of the compliance item.
-          enum:
-          - pending
-          - in_progress
-          - overdue
-        description:
-          type: string
-          description: Human-readable description of the compliance requirement.
-        filing_id:
-          type: string
-          description: Reference to the associated filing record, if applicable.
-        license_id:
-          type: string
-          description: Reference to the associated license record, if applicable.
-    Officer:
-      type: object
-      title: Officer
-      description: An officer, director, or member of a business entity.
-      required:
-      - name
-      - title
-      properties:
-        name:
-          type: string
-          description: Full legal name of the officer.
-        title:
-          type: string
-          description: Title or role of the officer (e.g., President, Secretary, Manager).
-        address:
-          $ref: '#/components/schemas/Address'
-    EntityUpdate:
-      type: object
-      title: EntityUpdate
-      description: Fields that can be updated on an existing business entity.
-      properties:
-        name:
-          type: string
-          description: Updated legal name of the entity.
-        principal_address:
-          $ref: '#/components/schemas/Address'
-        mailing_address:
-          $ref: '#/components/schemas/Address'
-        officers:
-          type: array
-          description: Updated list of officers and directors.
-          items:
-            $ref: '#/components/schemas/Officer'
-    PaginationMeta:
-      type: object
-      title: PaginationMeta
-      description: Pagination metadata included with list responses.
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query.
-        page:
-          type: integer
-          description: Current page number.
-        per_page:
-          type: integer
-          description: Number of records per page.
-        total_pages:
-          type: integer
-          description: Total number of pages available.
   parameters:
-    entityIdParam:
-      name: entityId
-      in: path
-      required: true
-      description: Unique identifier for the business entity.
-      schema:
-        type: string
     pageParam:
       name: page
       in: query
@@ -502,6 +495,13 @@ components:
         type: integer
         minimum: 1
         default: 1
+    entityIdParam:
+      name: entityId
+      in: path
+      required: true
+      description: Unique identifier for the business entity.
+      schema:
+        type: string
     perPageParam:
       name: per_page
       in: query
