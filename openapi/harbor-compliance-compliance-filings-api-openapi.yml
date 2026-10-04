@@ -111,37 +111,33 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    PaginationMeta:
+    Error:
       type: object
-      title: PaginationMeta
-      description: Pagination metadata included with list responses.
+      title: Error
+      description: Error response returned when a request fails.
+      required:
+      - code
+      - message
       properties:
-        total:
-          type: integer
-          description: Total number of records matching the query.
-        page:
-          type: integer
-          description: Current page number.
-        per_page:
-          type: integer
-          description: Number of records per page.
-        total_pages:
-          type: integer
-          description: Total number of pages available.
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+        details:
+          type: array
+          description: Additional details about specific validation errors.
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: The field that caused the error.
+              message:
+                type: string
+                description: Description of the field-level error.
     Document:
       type: object
       title: Document
@@ -167,6 +163,69 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the document was created.
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+    ComplianceStatus:
+      type: object
+      title: ComplianceStatus
+      description: A summary of the compliance status for a business entity.
+      required:
+      - entity_id
+      - overall_status
+      properties:
+        entity_id:
+          type: string
+          description: Identifier of the entity this status applies to.
+        overall_status:
+          type: string
+          description: Overall compliance health status for the entity.
+          enum:
+          - compliant
+          - attention_required
+          - non_compliant
+        upcoming_deadlines:
+          type: array
+          description: Compliance items due within the next 90 days.
+          items:
+            $ref: '#/components/schemas/ComplianceDeadline'
+        overdue_items:
+          type: array
+          description: Compliance items that are past their due date.
+          items:
+            $ref: '#/components/schemas/ComplianceDeadline'
+        active_licenses_count:
+          type: integer
+          description: Total number of active business licenses.
+          minimum: 0
+        expiring_licenses_count:
+          type: integer
+          description: Number of licenses expiring within the next 90 days.
+          minimum: 0
+        registered_agent_states:
+          type: array
+          description: List of states where the entity has an active registered agent.
+          items:
+            type: string
+            pattern: ^[A-Z]{2}$
+        generated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when this status was generated.
     ComplianceDeadline:
       type: object
       title: ComplianceDeadline
@@ -211,32 +270,6 @@ components:
         license_id:
           type: string
           description: Reference to the associated license record, if applicable.
-    Error:
-      type: object
-      title: Error
-      description: Error response returned when a request fails.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
-        details:
-          type: array
-          description: Additional details about specific validation errors.
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: The field that caused the error.
-              message:
-                type: string
-                description: Description of the field-level error.
     Filing:
       type: object
       title: Filing
@@ -304,61 +337,7 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last update.
-    ComplianceStatus:
-      type: object
-      title: ComplianceStatus
-      description: A summary of the compliance status for a business entity.
-      required:
-      - entity_id
-      - overall_status
-      properties:
-        entity_id:
-          type: string
-          description: Identifier of the entity this status applies to.
-        overall_status:
-          type: string
-          description: Overall compliance health status for the entity.
-          enum:
-          - compliant
-          - attention_required
-          - non_compliant
-        upcoming_deadlines:
-          type: array
-          description: Compliance items due within the next 90 days.
-          items:
-            $ref: '#/components/schemas/ComplianceDeadline'
-        overdue_items:
-          type: array
-          description: Compliance items that are past their due date.
-          items:
-            $ref: '#/components/schemas/ComplianceDeadline'
-        active_licenses_count:
-          type: integer
-          description: Total number of active business licenses.
-          minimum: 0
-        expiring_licenses_count:
-          type: integer
-          description: Number of licenses expiring within the next 90 days.
-          minimum: 0
-        registered_agent_states:
-          type: array
-          description: List of states where the entity has an active registered agent.
-          items:
-            type: string
-            pattern: ^[A-Z]{2}$
-        generated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when this status was generated.
   parameters:
-    pageParam:
-      name: page
-      in: query
-      description: Page number for paginated results (1-based).
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
     entityIdParam:
       name: entityId
       in: path
@@ -382,6 +361,27 @@ components:
         minimum: 1
         maximum: 100
         default: 20
+    pageParam:
+      name: page
+      in: query
+      description: Page number for paginated results (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey

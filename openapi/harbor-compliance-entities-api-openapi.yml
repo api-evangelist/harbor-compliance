@@ -161,126 +161,33 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Entity:
+    Error:
       type: object
-      title: Entity
-      description: A business entity managed by Harbor Compliance.
+      title: Error
+      description: Error response returned when a request fails.
       required:
-      - id
-      - name
-      - entity_type
-      - state
-      - status
+      - code
+      - message
       properties:
-        id:
+        code:
           type: string
-          description: Unique identifier for the business entity.
-        name:
+          description: Machine-readable error code.
+        message:
           type: string
-          description: Legal name of the business entity.
-        entity_type:
-          type: string
-          description: The legal structure of the entity.
-          enum:
-          - corporation
-          - llc
-          - lp
-          - llp
-          - nonprofit
-          - sole_proprietorship
-        state:
-          type: string
-          description: Two-letter state code where the entity was formed.
-          pattern: ^[A-Z]{2}$
-        status:
-          type: string
-          description: Current standing status of the entity.
-          enum:
-          - active
-          - inactive
-          - dissolved
-          - pending
-        ein:
-          type: string
-          description: Employer Identification Number (EIN) assigned by the IRS.
-          pattern: ^\d{2}-\d{7}$
-        formation_date:
-          type: string
-          format: date
-          description: Date the entity was formed or incorporated.
-        registered_agent_id:
-          type: string
-          description: Identifier of the registered agent appointment for this entity.
-        principal_address:
-          $ref: '#/components/schemas/Address'
-        mailing_address:
-          $ref: '#/components/schemas/Address'
-        officers:
+          description: Human-readable description of the error.
+        details:
           type: array
-          description: List of officers and directors associated with the entity.
+          description: Additional details about specific validation errors.
           items:
-            $ref: '#/components/schemas/Officer'
-        created_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the entity record was created.
-        updated_at:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp of the last update to the entity record.
-    PaginationMeta:
-      type: object
-      title: PaginationMeta
-      description: Pagination metadata included with list responses.
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query.
-        page:
-          type: integer
-          description: Current page number.
-        per_page:
-          type: integer
-          description: Number of records per page.
-        total_pages:
-          type: integer
-          description: Total number of pages available.
-    Officer:
-      type: object
-      title: Officer
-      description: An officer, director, or member of a business entity.
-      required:
-      - name
-      - title
-      properties:
-        name:
-          type: string
-          description: Full legal name of the officer.
-        title:
-          type: string
-          description: Title or role of the officer (e.g., President, Secretary, Manager).
-        address:
-          $ref: '#/components/schemas/Address'
+            type: object
+            properties:
+              field:
+                type: string
+                description: The field that caused the error.
+              message:
+                type: string
+                description: Description of the field-level error.
     Address:
       type: object
       title: Address
@@ -353,93 +260,6 @@ components:
           description: Officers and directors associated with the entity.
           items:
             $ref: '#/components/schemas/Officer'
-    ComplianceDeadline:
-      type: object
-      title: ComplianceDeadline
-      description: A single upcoming or overdue compliance deadline.
-      required:
-      - type
-      - state
-      - due_date
-      - status
-      properties:
-        type:
-          type: string
-          description: Type of compliance requirement.
-          enum:
-          - annual_report
-          - biennial_report
-          - license_renewal
-          - registered_agent
-          - franchise_tax
-          - other
-        state:
-          type: string
-          description: Two-letter state code for the jurisdiction.
-          pattern: ^[A-Z]{2}$
-        due_date:
-          type: string
-          format: date
-          description: Date the compliance item is due.
-        status:
-          type: string
-          description: Current status of the compliance item.
-          enum:
-          - pending
-          - in_progress
-          - overdue
-        description:
-          type: string
-          description: Human-readable description of the compliance requirement.
-        filing_id:
-          type: string
-          description: Reference to the associated filing record, if applicable.
-        license_id:
-          type: string
-          description: Reference to the associated license record, if applicable.
-    Error:
-      type: object
-      title: Error
-      description: Error response returned when a request fails.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
-        details:
-          type: array
-          description: Additional details about specific validation errors.
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: The field that caused the error.
-              message:
-                type: string
-                description: Description of the field-level error.
-    EntityUpdate:
-      type: object
-      title: EntityUpdate
-      description: Fields that can be updated on an existing business entity.
-      properties:
-        name:
-          type: string
-          description: Updated legal name of the entity.
-        principal_address:
-          $ref: '#/components/schemas/Address'
-        mailing_address:
-          $ref: '#/components/schemas/Address'
-        officers:
-          type: array
-          description: Updated list of officers and directors.
-          items:
-            $ref: '#/components/schemas/Officer'
     ComplianceStatus:
       type: object
       title: ComplianceStatus
@@ -486,15 +306,168 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when this status was generated.
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+    Officer:
+      type: object
+      title: Officer
+      description: An officer, director, or member of a business entity.
+      required:
+      - name
+      - title
+      properties:
+        name:
+          type: string
+          description: Full legal name of the officer.
+        title:
+          type: string
+          description: Title or role of the officer (e.g., President, Secretary, Manager).
+        address:
+          $ref: '#/components/schemas/Address'
+    EntityUpdate:
+      type: object
+      title: EntityUpdate
+      description: Fields that can be updated on an existing business entity.
+      properties:
+        name:
+          type: string
+          description: Updated legal name of the entity.
+        principal_address:
+          $ref: '#/components/schemas/Address'
+        mailing_address:
+          $ref: '#/components/schemas/Address'
+        officers:
+          type: array
+          description: Updated list of officers and directors.
+          items:
+            $ref: '#/components/schemas/Officer'
+    Entity:
+      type: object
+      title: Entity
+      description: A business entity managed by Harbor Compliance.
+      required:
+      - id
+      - name
+      - entity_type
+      - state
+      - status
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the business entity.
+        name:
+          type: string
+          description: Legal name of the business entity.
+        entity_type:
+          type: string
+          description: The legal structure of the entity.
+          enum:
+          - corporation
+          - llc
+          - lp
+          - llp
+          - nonprofit
+          - sole_proprietorship
+        state:
+          type: string
+          description: Two-letter state code where the entity was formed.
+          pattern: ^[A-Z]{2}$
+        status:
+          type: string
+          description: Current standing status of the entity.
+          enum:
+          - active
+          - inactive
+          - dissolved
+          - pending
+        ein:
+          type: string
+          description: Employer Identification Number (EIN) assigned by the IRS.
+          pattern: ^\d{2}-\d{7}$
+        formation_date:
+          type: string
+          format: date
+          description: Date the entity was formed or incorporated.
+        registered_agent_id:
+          type: string
+          description: Identifier of the registered agent appointment for this entity.
+        principal_address:
+          $ref: '#/components/schemas/Address'
+        mailing_address:
+          $ref: '#/components/schemas/Address'
+        officers:
+          type: array
+          description: List of officers and directors associated with the entity.
+          items:
+            $ref: '#/components/schemas/Officer'
+        created_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the entity record was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the last update to the entity record.
+    ComplianceDeadline:
+      type: object
+      title: ComplianceDeadline
+      description: A single upcoming or overdue compliance deadline.
+      required:
+      - type
+      - state
+      - due_date
+      - status
+      properties:
+        type:
+          type: string
+          description: Type of compliance requirement.
+          enum:
+          - annual_report
+          - biennial_report
+          - license_renewal
+          - registered_agent
+          - franchise_tax
+          - other
+        state:
+          type: string
+          description: Two-letter state code for the jurisdiction.
+          pattern: ^[A-Z]{2}$
+        due_date:
+          type: string
+          format: date
+          description: Date the compliance item is due.
+        status:
+          type: string
+          description: Current status of the compliance item.
+          enum:
+          - pending
+          - in_progress
+          - overdue
+        description:
+          type: string
+          description: Human-readable description of the compliance requirement.
+        filing_id:
+          type: string
+          description: Reference to the associated filing record, if applicable.
+        license_id:
+          type: string
+          description: Reference to the associated license record, if applicable.
   parameters:
-    pageParam:
-      name: page
-      in: query
-      description: Page number for paginated results (1-based).
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
     entityIdParam:
       name: entityId
       in: path
@@ -511,6 +484,33 @@ components:
         minimum: 1
         maximum: 100
         default: 20
+    pageParam:
+      name: page
+      in: query
+      description: Page number for paginated results (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey
