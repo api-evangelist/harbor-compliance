@@ -134,6 +134,9 @@ apis:
   - type: JSONSchema
     url: json-schema/harbor-compliance-entity-schema.json
 common:
+- type: CapabilityMap
+  url: capabilities/harbor-compliance-capability-edges.yml
+  name: Harbor Compliance Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/harbor-compliance/overview
 - type: AgenticAccess
