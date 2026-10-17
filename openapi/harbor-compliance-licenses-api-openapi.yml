@@ -140,6 +140,28 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    LicenseCreate:
+      type: object
+      title: LicenseCreate
+      description: Fields required to submit a new business license application.
+      required:
+      - entity_id
+      - state
+      - license_type
+      properties:
+        entity_id:
+          type: string
+          description: Identifier of the entity applying for the license.
+        state:
+          type: string
+          description: Two-letter state code for the licensing jurisdiction.
+          pattern: ^[A-Z]{2}$
+        license_type:
+          type: string
+          description: Type of business license being applied for.
+        notes:
+          type: string
+          description: Additional notes or instructions for the license application.
     Error:
       type: object
       title: Error
@@ -166,45 +188,6 @@ components:
               message:
                 type: string
                 description: Description of the field-level error.
-    LicenseCreate:
-      type: object
-      title: LicenseCreate
-      description: Fields required to submit a new business license application.
-      required:
-      - entity_id
-      - state
-      - license_type
-      properties:
-        entity_id:
-          type: string
-          description: Identifier of the entity applying for the license.
-        state:
-          type: string
-          description: Two-letter state code for the licensing jurisdiction.
-          pattern: ^[A-Z]{2}$
-        license_type:
-          type: string
-          description: Type of business license being applied for.
-        notes:
-          type: string
-          description: Additional notes or instructions for the license application.
-    PaginationMeta:
-      type: object
-      title: PaginationMeta
-      description: Pagination metadata included with list responses.
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query.
-        page:
-          type: integer
-          description: Current page number.
-        per_page:
-          type: integer
-          description: Number of records per page.
-        total_pages:
-          type: integer
-          description: Total number of pages available.
     License:
       type: object
       title: License
@@ -263,40 +246,32 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last update.
-  parameters:
-    licenseIdParam:
-      name: licenseId
-      in: path
-      required: true
-      description: Unique identifier for the business license.
-      schema:
-        type: string
-    perPageParam:
-      name: per_page
-      in: query
-      description: Number of results per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    pageParam:
-      name: page
-      in: query
-      description: Page number for paginated results (1-based).
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
+    PaginationMeta:
+      type: object
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
+      properties:
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
   responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
       content:
         application/json:
           schema:
@@ -307,6 +282,31 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    perPageParam:
+      name: per_page
+      in: query
+      description: Number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    licenseIdParam:
+      name: licenseId
+      in: path
+      required: true
+      description: Unique identifier for the business license.
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Page number for paginated results (1-based).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     apiKey:
       type: apiKey

@@ -162,6 +162,83 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ComplianceDeadline:
+      type: object
+      title: ComplianceDeadline
+      description: A single upcoming or overdue compliance deadline.
+      required:
+      - type
+      - state
+      - due_date
+      - status
+      properties:
+        type:
+          type: string
+          description: Type of compliance requirement.
+          enum:
+          - annual_report
+          - biennial_report
+          - license_renewal
+          - registered_agent
+          - franchise_tax
+          - other
+        state:
+          type: string
+          description: Two-letter state code for the jurisdiction.
+          pattern: ^[A-Z]{2}$
+        due_date:
+          type: string
+          format: date
+          description: Date the compliance item is due.
+        status:
+          type: string
+          description: Current status of the compliance item.
+          enum:
+          - pending
+          - in_progress
+          - overdue
+        description:
+          type: string
+          description: Human-readable description of the compliance requirement.
+        filing_id:
+          type: string
+          description: Reference to the associated filing record, if applicable.
+        license_id:
+          type: string
+          description: Reference to the associated license record, if applicable.
+    Officer:
+      type: object
+      title: Officer
+      description: An officer, director, or member of a business entity.
+      required:
+      - name
+      - title
+      properties:
+        name:
+          type: string
+          description: Full legal name of the officer.
+        title:
+          type: string
+          description: Title or role of the officer (e.g., President, Secretary, Manager).
+        address:
+          $ref: '#/components/schemas/Address'
+    EntityUpdate:
+      type: object
+      title: EntityUpdate
+      description: Fields that can be updated on an existing business entity.
+      properties:
+        name:
+          type: string
+          description: Updated legal name of the entity.
+        principal_address:
+          $ref: '#/components/schemas/Address'
+        mailing_address:
+          $ref: '#/components/schemas/Address'
+        officers:
+          type: array
+          description: Updated list of officers and directors.
+          items:
+            $ref: '#/components/schemas/Officer'
     Error:
       type: object
       title: Error
@@ -188,37 +265,6 @@ components:
               message:
                 type: string
                 description: Description of the field-level error.
-    Address:
-      type: object
-      title: Address
-      description: A postal address.
-      required:
-      - street1
-      - city
-      - state
-      - zip
-      properties:
-        street1:
-          type: string
-          description: Primary street address line.
-        street2:
-          type: string
-          description: Secondary street address line (suite, unit, etc.).
-        city:
-          type: string
-          description: City name.
-        state:
-          type: string
-          description: Two-letter state code.
-          pattern: ^[A-Z]{2}$
-        zip:
-          type: string
-          description: ZIP or postal code.
-          pattern: ^\d{5}(-\d{4})?$
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          default: US
     EntityCreate:
       type: object
       title: EntityCreate
@@ -260,6 +306,37 @@ components:
           description: Officers and directors associated with the entity.
           items:
             $ref: '#/components/schemas/Officer'
+    Address:
+      type: object
+      title: Address
+      description: A postal address.
+      required:
+      - street1
+      - city
+      - state
+      - zip
+      properties:
+        street1:
+          type: string
+          description: Primary street address line.
+        street2:
+          type: string
+          description: Secondary street address line (suite, unit, etc.).
+        city:
+          type: string
+          description: City name.
+        state:
+          type: string
+          description: Two-letter state code.
+          pattern: ^[A-Z]{2}$
+        zip:
+          type: string
+          description: ZIP or postal code.
+          pattern: ^\d{5}(-\d{4})?$
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          default: US
     ComplianceStatus:
       type: object
       title: ComplianceStatus
@@ -306,56 +383,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when this status was generated.
-    PaginationMeta:
-      type: object
-      title: PaginationMeta
-      description: Pagination metadata included with list responses.
-      properties:
-        total:
-          type: integer
-          description: Total number of records matching the query.
-        page:
-          type: integer
-          description: Current page number.
-        per_page:
-          type: integer
-          description: Number of records per page.
-        total_pages:
-          type: integer
-          description: Total number of pages available.
-    Officer:
-      type: object
-      title: Officer
-      description: An officer, director, or member of a business entity.
-      required:
-      - name
-      - title
-      properties:
-        name:
-          type: string
-          description: Full legal name of the officer.
-        title:
-          type: string
-          description: Title or role of the officer (e.g., President, Secretary, Manager).
-        address:
-          $ref: '#/components/schemas/Address'
-    EntityUpdate:
-      type: object
-      title: EntityUpdate
-      description: Fields that can be updated on an existing business entity.
-      properties:
-        name:
-          type: string
-          description: Updated legal name of the entity.
-        principal_address:
-          $ref: '#/components/schemas/Address'
-        mailing_address:
-          $ref: '#/components/schemas/Address'
-        officers:
-          type: array
-          description: Updated list of officers and directors.
-          items:
-            $ref: '#/components/schemas/Officer'
     Entity:
       type: object
       title: Entity
@@ -423,50 +450,42 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp of the last update to the entity record.
-    ComplianceDeadline:
+    PaginationMeta:
       type: object
-      title: ComplianceDeadline
-      description: A single upcoming or overdue compliance deadline.
-      required:
-      - type
-      - state
-      - due_date
-      - status
+      title: PaginationMeta
+      description: Pagination metadata included with list responses.
       properties:
-        type:
-          type: string
-          description: Type of compliance requirement.
-          enum:
-          - annual_report
-          - biennial_report
-          - license_renewal
-          - registered_agent
-          - franchise_tax
-          - other
-        state:
-          type: string
-          description: Two-letter state code for the jurisdiction.
-          pattern: ^[A-Z]{2}$
-        due_date:
-          type: string
-          format: date
-          description: Date the compliance item is due.
-        status:
-          type: string
-          description: Current status of the compliance item.
-          enum:
-          - pending
-          - in_progress
-          - overdue
-        description:
-          type: string
-          description: Human-readable description of the compliance requirement.
-        filing_id:
-          type: string
-          description: Reference to the associated filing record, if applicable.
-        license_id:
-          type: string
-          description: Reference to the associated license record, if applicable.
+        total:
+          type: integer
+          description: Total number of records matching the query.
+        page:
+          type: integer
+          description: Current page number.
+        per_page:
+          type: integer
+          description: Number of records per page.
+        total_pages:
+          type: integer
+          description: Total number of pages available.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     entityIdParam:
       name: entityId
@@ -492,25 +511,6 @@ components:
         type: integer
         minimum: 1
         default: 1
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey
